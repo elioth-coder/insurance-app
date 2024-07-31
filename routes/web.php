@@ -25,6 +25,8 @@ Route::prefix('clients/{id}/vehicles')->group(function () {
 Route::controller(VehicleController::class)->group(function () {
     Route::get('/create', 'create');
     Route::post('/', 'store');
+    Route::get('/{vehicle_id}/edit', 'edit');
+    Route::patch('/{vehicle_id}', 'update');
     Route::delete('/{vehicle_id}', 'destroy');
 });
 });
