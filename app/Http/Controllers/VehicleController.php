@@ -8,12 +8,32 @@ use App\Models\Vehicle;
 
 class VehicleController extends Controller
 {
+    public function index($id)
+    {
+        $client = Client::find($id);
+
+        return view('vehicles.index', [
+            'client' => $client
+        ]);
+    }
+
     public function edit($id, $vehicle_id)
     {
         $client = Client::findOrFail($id);
         $vehicle = Vehicle::findOrFail($vehicle_id);
 
         return view('vehicles.edit', [
+            'client' => $client,
+            'vehicle' => $vehicle,
+        ]);
+    }
+
+    public function show($id, $vehicle_id)
+    {
+        $client = Client::findOrFail($id);
+        $vehicle = Vehicle::findOrFail($vehicle_id);
+
+        return view('vehicles.show', [
             'client' => $client,
             'vehicle' => $vehicle,
         ]);
@@ -45,9 +65,13 @@ class VehicleController extends Controller
             'load_capacity' => ['nullable','integer'],
         ]);
 
-        $client->vehicles()->create($attributes);
+        $vehicle = $client->vehicles()->create($attributes);
 
-        return redirect("/clients/$id");
+        return redirect("/clients/$client->id/vehicles/create")
+            ->with([
+                'message' => 'Successfully added ' . $attributes['make'] . ' ' . $attributes['model'] . ' to client\'s vehicles.',
+                'url' => "/clients/$client->id/vehicles/$vehicle->id",
+            ]);
     }
 
     public function update(Request $request, $id, $vehicle_id)
@@ -67,9 +91,13 @@ class VehicleController extends Controller
             'load_capacity' => ['nullable','integer'],
         ]);
 
-        $client->vehicles()->find($vehicle_id)->update($attributes);
+        $vehicle = $client->vehicles()->find($vehicle_id);
+        $vehicle->update($attributes);
 
-        return redirect("/clients/$id");
+        return redirect("/clients/$id/vehicles/$vehicle->id")
+            ->with([
+                'message' => 'Successfully updated ' . $attributes['make'] . ' ' . $attributes['model'] . '.',
+            ]);
     }
 
     public function destroy($id, $vehicle_id)
@@ -79,6 +107,9 @@ class VehicleController extends Controller
 
         $vehicle->delete();
 
-        return redirect("/clients/$id");
+        return redirect("/clients/$id/vehicles")
+            ->with([
+                'message' => 'Successfully deleted ' . $vehicle['make'] . ' ' . $vehicle['model'] . '.',
+            ]);
     }
 }

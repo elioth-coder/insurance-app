@@ -15,6 +15,22 @@
             'url' => '/clients/' . $client->id,
             'title' => $initials . ' ' . $client->last_name,
         ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles',
+            'title' => 'Vehicles',
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles/' . $vehicle->id,
+            'title' => ucfirst(strtolower($vehicle->make)) . ' ' . ucfirst(strtolower($vehicle->model)),
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles/' . $vehicle->id . '/insurances',
+            'title' => 'Insurances ',
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles/' . $vehicle->id . '/insurances/' . $insurance->id,
+            'title' => $insurance->coc_number,
+        ],
     ]
 @endphp
 
@@ -23,8 +39,8 @@
         class="hidden"
         method="POST"
         verb="DELETE"
-        action="/clients/{{ $client->id }}"
-        id="delete-client-{{ $client->id }}-form">
+        action="/clients/{{ $client->id }}/vehicles/{{ $vehicle->id }}/insurances/{{ $insurance->id }}"
+        id="delete-insurance-{{ $insurance->id }}-form">
         <button type="submit">
             Delete
         </button>
@@ -38,18 +54,13 @@
         @endif
     </div>
 
-    <section class="mx-auto w-auto">
-        <x-clients.card-horizontal :$client />
-        <div class="max-w-4xl mt-5 mx-auto">
-            <x-clients.tabs-horizontal :$client />
-        </div>
-    </section>
+    <x-insurances.card-horizontal :$client :$vehicle :$insurance />
 
     <x-slot:script>
         <script>
-            const deleteClient = async (id) => {
+            const deleteInsurance = async (id) => {
                 let result = await Swal.fire({
-                    title: "Delete this client?",
+                    title: "Delete this insurance?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -58,25 +69,9 @@
                 });
 
                 if(result.isConfirmed) {
-                    document.querySelector(`#delete-client-${id}-form button`).click();
+                    document.querySelector(`#delete-insurance-${id}-form button`).click();
                 }
             }
-
-            const deleteVehicle = async (id) => {
-                let result = await Swal.fire({
-                    title: "Delete this vehicle?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Continue"
-                });
-
-                if(result.isConfirmed) {
-                    document.querySelector(`#delete-vehicle-${id}-form button`).click();
-                }
-            }
-
         </script>
     </x-slot>
 </x-layout>

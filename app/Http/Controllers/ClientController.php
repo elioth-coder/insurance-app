@@ -50,7 +50,7 @@ class ClientController extends Controller
             'gender' => ['required', Rule::in(['MALE', 'FEMALE'])],
             'birthday' => ['required', 'date'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'mobile_number' => ['nullable'],
+            'mobile_number' => ['required'],
             'tin_number' => ['nullable'],
             'business' => ['nullable'],
             'profession' => ['nullable'],
@@ -61,7 +61,11 @@ class ClientController extends Controller
 
         $client = Client::create($attributes);
 
-        return redirect('/clients');
+        return redirect('/clients/create')
+            ->with([
+                'message' => 'Successfully added ' . $attributes['first_name'] . ' ' . $attributes['last_name'] . '.',
+                'url' => "/clients/$client->id",
+            ]);
     }
 
     public function update(Request $request, $id)
@@ -74,7 +78,7 @@ class ClientController extends Controller
             'gender' => ['required', Rule::in(['MALE', 'FEMALE'])],
             'birthday' => ['required', 'date'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'mobile_number' => ['nullable'],
+            'mobile_number' => ['required'],
             'tin_number' => ['nullable'],
             'business' => ['nullable'],
             'profession' => ['nullable'],
@@ -86,7 +90,10 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $client->update($attributes);
 
-        return redirect('/clients/' . $client->id);
+        return redirect('/clients/' . $client->id)
+            ->with([
+                'message' => 'Successfully updated ' . $client['first_name'] . ' ' . $client['last_name'] . '.',
+            ]);
     }
 
     public function destroy($id)
@@ -94,7 +101,10 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $client->delete();
 
-        return redirect('/clients');
+        return redirect('/clients')
+            ->with([
+                'message' => 'Successfully deleted ' . $client['first_name'] . ' ' . $client['last_name'] . '.',
+            ]);
     }
 
 }

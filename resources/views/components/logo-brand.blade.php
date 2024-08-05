@@ -9,7 +9,7 @@
 <a href="/" {{ $attributes($defaults) }}>
     <x-logo class="w-[{{ $size }}] h-[{{ $size }}] mr-2" />
     @if ($slot->isEmpty())
-        Car Ensure
+        CTPL Insurance
     @else
         {{ $slot }}
     @endif

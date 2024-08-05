@@ -1,6 +1,36 @@
-<x-layout>
-    <x-page-header>{{ $client->first_name }} {{ $client->last_name }}</x-page-header>
+@php
+    $names = explode(' ', $client->first_name);
+    $initials = collect($names)
+        ->map(function ($name) {
+            return substr($name, 0, 1) . '.';
+        })
+        ->join('');
 
+    $breadcrumbs = [
+        [
+            'url' => '/clients',
+            'title' => 'Clients',
+        ],
+        [
+            'url' => '/clients/' . $client->id,
+            'title' => $initials . ' ' . $client->last_name,
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles',
+            'title' => 'Vehicles',
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles/' . $vehicle->id,
+            'title' => ucfirst(strtolower($vehicle->make)) . ' ' . ucfirst(strtolower($vehicle->model)),
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/vehicles/' . $vehicle->id . '/edit',
+            'title' => 'Edit ',
+        ],
+    ]
+@endphp
+
+<x-layout :$breadcrumbs>
     <x-card class="mx-auto sm:max-w-xl">
         <x-card-header>Update client's vehicle</x-card-header>
         <x-forms.form action="/clients/{{ $client->id }}/vehicles/{{ $vehicle->id }}" method="POST" verb="PATCH">
@@ -96,9 +126,9 @@
             </section>
             <hr>
             <section class="flex space-x-2">
-                <x-forms.button type="submit" color="primary">Update vehicle</x-forms.button>
-                <a href="/clients/{{ $client->id }}" class="w-full block">
-                    <x-forms.button type="button" color="red">Cancel</x-forms.button>
+                <x-forms.button type="submit" color="green">Update</x-forms.button>
+                <a href="/clients/{{ $client->id }}/vehicles/{{ $vehicle->id }}" class="w-full block">
+                    <x-forms.button type="button" color="neutral">Cancel</x-forms.button>
                 </a>
             </section>
         </x-forms.form>

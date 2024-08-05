@@ -1,17 +1,33 @@
-<x-layout>
-    <x-page-header>Edit details of {{ $client->first_name }} {{ $client->last_name }}</x-page-header>
+@php
+    $names = explode(' ', $client->first_name);
+    $initials = collect($names)
+        ->map(function ($name) {
+            return substr($name, 0, 1) . '.';
+        })
+        ->join('');
+
+    $breadcrumbs = [
+        [
+            'url' => '/clients',
+            'title' => 'Clients',
+        ],
+        [
+            'url' => '/clients/' . $client->id,
+            'title' => $initials . ' ' . $client->last_name,
+        ],
+        [
+            'url' => '/clients/' . $client->id . '/edit',
+            'title' => 'Edit client',
+        ],
+    ]
+@endphp
+
+<x-layout :$breadcrumbs>
+    {{-- <x-page-header>Edit details of {{ $client->first_name }} {{ $client->last_name }}</x-page-header> --}}
     <x-card class="mx-auto sm:max-w-xl">
         <x-card-header>Edit client details</x-card-header>
         <x-forms.form action="/clients/{{ $client->id }}" method="POST" verb="PATCH">
             <section class="flex space-x-2">
-                <x-forms.input-field
-                    class="w-full"
-                    name="last_name"
-                    type="text"
-                    label="Last name"
-                    placeholder="ex. Dela Cruz"
-                    value="{{ $client->last_name ?? '' }}"
-                />
                 <x-forms.input-field
                     class="w-full"
                     name="first_name"
@@ -19,6 +35,14 @@
                     label="First name"
                     placeholder="ex. Juan"
                     value="{{ $client->first_name ?? '' }}"
+                />
+                <x-forms.input-field
+                    class="w-full"
+                    name="last_name"
+                    type="text"
+                    label="Last name"
+                    placeholder="ex. Dela Cruz"
+                    value="{{ $client->last_name ?? '' }}"
                 />
             </section>
             <section class="flex space-x-2">
@@ -131,7 +155,7 @@
             />
             <hr>
             <section class="flex space-x-2">
-                <x-forms.button type="submit" color="primary">Update client</x-forms.button>
+                <x-forms.button type="submit" color="primary">Update</x-forms.button>
                 <a href="/clients/{{ $client->id }}" class="w-full block">
                     <x-forms.button type="button" color="red">Cancel</x-forms.button>
                 </a>

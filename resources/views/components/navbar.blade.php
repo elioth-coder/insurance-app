@@ -5,18 +5,12 @@
         </div>
 
         @auth
-            <div class="font-bold text-center mx-auto">
-                <a href="/clients" class="hover:bg-gray-200 px-3 py-1 rounded">Clients</a>
-                <a href="/" class="hover:bg-gray-200 px-3 py-1 rounded">Vehicles</a>
+            <div class="font-bold text-center mx-auto w-1/2">
+                <x-searchbar />
             </div>
 
             <div class="font-bold flex">
-                <form method="POST" action="/logout">
-                    @csrf
-                    @method('DELETE')
-
-                    <button class="hover:bg-gray-200 px-3 py-1 rounded">Log Out</button>
-                </form>
+                <x-avatar-with-dropdown />
             </div>
         @endauth
 

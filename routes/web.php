@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\VehicleController;
@@ -23,11 +24,27 @@ Route::controller(ClientController::class)->group(function () {
 Route::middleware('auth')->group(function () {
 Route::prefix('clients/{id}/vehicles')->group(function () {
 Route::controller(VehicleController::class)->group(function () {
+    Route::get('/', 'index');
     Route::get('/create', 'create');
     Route::post('/', 'store');
+    Route::get('/{vehicle_id}', 'show');
     Route::get('/{vehicle_id}/edit', 'edit');
     Route::patch('/{vehicle_id}', 'update');
     Route::delete('/{vehicle_id}', 'destroy');
+});
+});
+});
+
+Route::middleware('auth')->group(function () {
+Route::prefix('clients/{id}/vehicles/{vehicle_id}/insurances')->group(function () {
+Route::controller(InsuranceController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/create', 'create');
+    Route::post('/', 'store');
+    Route::get('/{insurance_id}', 'show');
+    Route::get('/{insurance_id}/edit', 'edit');
+    Route::patch('/{insurance_id}', 'update');
+    Route::delete('/{insurance_id}', 'destroy');
 });
 });
 });

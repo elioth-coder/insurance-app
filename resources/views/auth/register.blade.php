@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :sidebar="false">
     <section class="w-full pb-5">
         <div class="flex flex-col items-center justify-center px-6 mx-auto">
             {{-- <x-logo-brand class="mb-6" /> --}}

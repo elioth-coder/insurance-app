@@ -15,16 +15,16 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Client::class);
-            $table->string('plate_number');
-            $table->string('mv_file_number');
+            $table->string('plate_number')->nullable();
+            $table->string('mv_file_number')->nullable();
             $table->string('make');
             $table->string('model');
             $table->string('color');
             $table->string('body_type');
             $table->string('chassis_number');
-            $table->string('engine_number');
-            $table->string('load_capacity');
-            $table->string('unladen_weight');
+            $table->string('engine_number')->nullable();
+            $table->string('load_capacity')->nullable();
+            $table->string('unladen_weight')->nullable();
             $table->timestamps();
         });
     }

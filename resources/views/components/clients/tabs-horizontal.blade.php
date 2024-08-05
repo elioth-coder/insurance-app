@@ -12,19 +12,11 @@
         </li>
         <li class="me-2" role="presentation">
             <button
-                id="personal-info-tab"
+                id="owned-vehicles-tab"
                 class="inline-block p-4 border-b-2 rounded-t-lg"
-                data-tabs-target="#owned_vehicles"
+                data-tabs-target="#vehicles"
                 type="button"
-                role="tab">Owned Vehicles</button>
-        </li>
-        <li class="me-2" role="presentation">
-            <button
-                id="transactions-tab"
-                class="inline-block p-4 border-b-2 rounded-t-lg"
-                data-tabs-target="#transactions"
-                type="button"
-                role="tab">Transactions</button>
+                role="tab">Vehicles</button>
         </li>
     </ul>
 </div>
@@ -38,14 +30,11 @@
         </div>
     </div>
     <div class="hidden p-8 rounded-lg bg-gray-50 dark:bg-gray-800"
-        id="owned_vehicles"
+        id="vehicles"
         role="tabpanel"
-        aria-labelledby="dashboard-tab">
+        aria-labelledby="vehicles-tab">
         <div class="flex">
             <x-clients.table-owned-vehicles :$client />
         </div>
-    </div>
-    <div class="hidden p-8 rounded-lg bg-gray-50 dark:bg-gray-800" id="transactions" role="tabpanel" aria-labelledby="settings-tab">
-        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
     </div>
 </div>
