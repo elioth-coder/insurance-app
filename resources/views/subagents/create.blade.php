@@ -91,6 +91,7 @@
                     </x-forms.select-field>
                     <div class="w-full"></div>
                 </div>
+                <hr class="my-1">
                 <div class="flex space-x-2 justify-end">
                     <span class="inline-block w-32">
                         <x-forms.button type="submit" color="violet">Submit</x-forms.button>

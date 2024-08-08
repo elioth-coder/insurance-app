@@ -67,6 +67,7 @@
 
             @if (request()->is('subagents') || request()->is('subagents/*')) name='users'; @endif
             @if (request()->is('coc_series') || request()->is('coc_series/*')) name='series'; @endif
+            @if (request()->is('authentication') || request()->is('authentication/*')) name='authentication'; @endif
 
             clickTab(name);
         })();

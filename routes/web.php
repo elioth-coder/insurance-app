@@ -6,8 +6,24 @@ use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SubagentController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::middleware('auth')->group(function () {
+Route::prefix('authentication')->group(function () {
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/create', 'create');
+    Route::post('/', 'store');
+    Route::get('/{id}', 'show');
+    Route::get('/{id}/edit', 'edit');
+    Route::get('/{id}/print', 'print');
+    Route::patch('/{id}', 'update');
+    Route::delete('/{id}', 'destroy');
+});
+});
+});
 
 Route::middleware('auth')->group(function () {
 Route::prefix('coc_series')->group(function () {
@@ -85,9 +101,12 @@ Route::controller(InsuranceController::class)->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [SessionController::class, 'create'])->name('login');
     Route::post('/login', [SessionController::class, 'store']);
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard', function () {
+    return view('dashboard');
 })->middleware('auth');

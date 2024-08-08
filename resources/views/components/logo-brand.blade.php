@@ -2,7 +2,7 @@
 
 @php
     $defaults = [
-        'class' => 'flex items-center text-2xl font-semibold text-gray-900 dark:text-white'
+        'class' => 'flex items-center text-2xl font-semibold text-gray-900 text-white'
     ];
 @endphp
 

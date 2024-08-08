@@ -47,6 +47,7 @@
                         <x-forms.input-field class="w-full" name="end" type="text" label="Series To"
                             placeholder="Series To" required />
                     </div>
+                    <hr class="my-1">
                     <div class="flex space-x-2 justify-end">
                         <span class="inline-block w-32">
                             <x-forms.button type="submit" color="violet">Submit</x-forms.button>

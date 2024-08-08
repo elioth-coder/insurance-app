@@ -1,5 +1,5 @@
 <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
-    class="break-keep flex items-center text-sm pe-4 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+    class="text-white break-keep flex items-center text-sm pe-4 font-medium rounded-full hover:text-gray-400 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
     type="button">
     <img class="w-8 h-8 me-2 rounded-full" src="{{ Vite::asset('resources/images/profile.png') }}" alt="user photo">
     {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
@@ -19,13 +19,13 @@
         aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                class="block px-4 py-2 hover:bg-violet-200 dark:hover:bg-gray-600 dark:hover:text-white">
                 Activity Logs
             </a>
         </li>
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                class="block px-4 py-2 hover:bg-violet-200 dark:hover:bg-gray-600 dark:hover:text-white">
                 Edit Profile
             </a>
         </li>
@@ -35,7 +35,7 @@
             @csrf
             @method('DELETE')
             <button
-                class="w-full block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                class="w-full block text-left px-4 py-2 text-sm text-gray-700 hover:bg-violet-200 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                 Log Out
             </button>
         </form>

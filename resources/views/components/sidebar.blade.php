@@ -98,19 +98,19 @@
             <hr>
             <ul class="space-y-1 font-medium">
                 <li role="presentation">
-                    <a href="/?tab=introduction#introduction"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->tab=='introduction' || request()->is('/')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                    <a href="/dashboard/?tab=introduction#introduction"
+                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->tab=='introduction') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
                         <span class="">Introduction</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="/?tab=announcement#announcement"
+                    <a href="/dashboard/?tab=announcement#announcement"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->tab=='announcement') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
                         <span class="">Announcement</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="/?tab=quick_search#quick_search"
+                    <a href="/dashboard/?tab=quick_search#quick_search"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->tab=='quick_search') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
                         <span class="">Quick Search</span>
                     </a>
@@ -122,27 +122,15 @@
             <hr>
             <ul class="space-y-1 font-medium">
                 <li role="presentation">
-                    <a href="#"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">New</span>
+                    <a href="/authentication/create"
+                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('authentication/create')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <span class="">New Authentication</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Renewal</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">New (Trailer)</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Renewal (Trailer)</span>
+                    <a href="/authentication"
+                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('authentication') || request()->tab=='assured_vehicles') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <span class="">Authenticated Vehicles</span>
                     </a>
                 </li>
             </ul>
@@ -169,15 +157,15 @@
             <hr>
             <ul class="space-y-1 font-medium">
                 <li role="presentation">
-                    <a href="/?#notifications"
+                    <a href="/reports/create"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Notifications</span>
+                        <span class="">Reports Generator</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="/?#quick-search" onclick="(e) => { e.preventDefault(); document.querySelector(`#quick-search`).focus(); }"
+                    <a href="/reports" onclick="(e) => { e.preventDefault(); document.querySelector(`#quick-search`).focus(); }"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Quick Search</span>
+                        <span class="">Pre-Generated</span>
                     </a>
                 </li>
             </ul>

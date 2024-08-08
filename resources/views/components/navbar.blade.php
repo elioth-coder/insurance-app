@@ -1,4 +1,4 @@
-<nav class="bg-white border-b z-10 flex">
+<nav class="bg-violet-700 border-b border-violet-600 z-10 flex text-white">
     <div class="flex w-full items-center">
         <div class="min-w-[350px] h-full px-3 flex items-center">
             @auth
