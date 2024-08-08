@@ -88,15 +88,14 @@
         }
 
         body {
-            margin: 0.5in 1in;
+            margin: 10px;
         }
     </style>
 </head>
 
-<body>
-    <header class="mx-auto w-full text-center relative">
-        <img class="absolute" style="top: 0; left: 20px; height: 100px;"
-            src="{{ asset('images/insurance-logo.png') }}" />
+<body class="flex flex-col">
+    <header class="block text-center relative">
+        <img class="mx-auto block" style="height: 100px;" src="{{ asset('images/insurance-logo.png') }}" />
         <p class="mt-3">Republic of the Philippines</p>
         <p>DEPARTMENT OF INSURANCE COMMISION</p>
         <h3 class="text-xl font-bold">INSURANCE COMMISSION OFFICE</h3>
@@ -162,7 +161,8 @@
                 <tr class="border-b">
                     <td class="p-2 border-r font-bold">Vehicle Type</td>
                     <td colspan="3" class="p-2 border-r uppercase">
-                        {{ $authentication->vehicle_type }} - {{ $premiums[$authentication->vehicle_type]['description'] ?? '--' }}
+                        {{ $authentication->vehicle_type }} -
+                        {{ $premiums[$authentication->vehicle_type]['description'] ?? '--' }}
                     </td>
                 </tr>
                 <tr>
@@ -190,28 +190,38 @@
                 </tr>
             </tbody>
         </table>
-        <div class="flex mt-4 space-x-5">
+        <div class="flex flex-col mt-4 items-center justify-center space-y-5">
             <section class="block">
-                <p class="text-xs text-justify" style="text-indent: 30px;">This Confirmation of Cover is evidence of the policy of insurance required under Chapter VI - Compulsory Motor Vehicle Insurance of the Insurance Code, as amended by Presidential Decreee No. 1814</p>
+                <p class="text-xs text-justify" style="text-indent: 30px;">This Confirmation of Cover is evidence of the
+                    policy of insurance required under Chapter VI - Compulsory Motor Vehicle Insurance of the Insurance
+                    Code, as amended by Presidential Decreee No. 1814</p>
                 <div class="mt-10 mx-auto text-center" style="width: 300px;">
                     <p>_____________________________</p>
                     <p>Authorized Signature</p>
                 </div>
             </section>
-            <section
-                class="block box-border border-2 border-black"
-                style="min-width: 160px; min-height: 160px; padding: 5px;">
-                {!! QrCode::size(150)->generate("http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view") !!}
+            <section class="block box-border border-2 border-black w-fit mx-auto"
+                style="width: 210px; min-width: 210px; height: 210px; min-height: 210px; padding: 5px;">
+                {!! QrCode::size(200)->generate(
+                    "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view",
+                ) !!}
             </section>
         </div>
         <img class="absolute" style="top: calc(50% - 150px); left: calc(50% - 150px); height: 300px; opacity: 0.3;"
             src="{{ asset('images/insurance-logo.png') }}" />
     </main>
-    <footer></footer>
+    <footer class="text-center py-5">
+        <a href="{{ "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/print" }}"
+            class="text-white bg-violet-700 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">
+            <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                    d="M16.444 18H19a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2.556M17 11V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v6h10ZM7 15h10v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-4Z" />
+            </svg>
+
+            Print
+        </a>
+    </footer>
 </body>
-<script>
-(function() {
-    window.print();
-})();
-</script>
+
 </html>

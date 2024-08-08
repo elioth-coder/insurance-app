@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SubagentController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AuthenticationController;
+use App\Models\Authentication;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,7 +19,6 @@ Route::controller(AuthenticationController::class)->group(function () {
     Route::post('/', 'store');
     Route::get('/{id}', 'show');
     Route::get('/{id}/edit', 'edit');
-    Route::get('/{id}/print', 'print');
     Route::patch('/{id}', 'update');
     Route::delete('/{id}', 'destroy');
 });
@@ -106,7 +106,11 @@ Route::middleware('guest')->group(function () {
     });
 });
 
+Route::get('/authentication/{id}/view', [AuthenticationController::class, 'view']);
+Route::get('/authentication/{id}/print', [AuthenticationController::class, 'print']);
+
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
+

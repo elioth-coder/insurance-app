@@ -4,4 +4,4 @@
     ];
 @endphp
 
-<img {{ $attributes($defaults) }} src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo">
+<img {{ $attributes($defaults) }} src="{{ asset('images/logo.png') }}" alt="logo">

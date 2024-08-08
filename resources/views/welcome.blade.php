@@ -39,15 +39,15 @@
         </div>
         <div class="flex space-x-3 justify-center">
             <a href="#" class="block">
-                <img style="height: 150px;" src="{{ Vite::asset('resources/images/lto-logo.png') }}" alt="">
+                <img style="height: 150px;" src="{{ asset('images/lto-logo.png') }}" alt="">
             </a>
             <a href="#" class="block">
-                <img style="height: 150px;" class="w-full" src="{{ Vite::asset('resources/images/hpg-logo.png') }}"
+                <img style="height: 150px;" class="w-full" src="{{ asset('images/hpg-logo.png') }}"
                     alt="">
             </a>
             <a href="#" class="block">
                 <img style="height: 150px;" class="w-full"
-                    src="{{ Vite::asset('resources/images/insurance-logo.png') }}" alt="">
+                    src="{{ asset('images/insurance-logo.png') }}" alt="">
             </a>
         </div>
     </div>

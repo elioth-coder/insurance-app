@@ -16,9 +16,17 @@ class AuthenticationController extends Controller
         $authentication = Authentication::findOrFail($id);
         $series_number = CocSeriesNumber::where('series_number', $authentication->coc_number)->first();
 
-        // dd($series_number);
-
         return view('authentication.print', [
+            'authentication' => $authentication,
+            'series_number' => $series_number,
+        ]);
+    }
+
+    public function view($id) {
+        $authentication = Authentication::findOrFail($id);
+        $series_number = CocSeriesNumber::where('series_number', $authentication->coc_number)->first();
+
+        return view('authentication.view', [
             'authentication' => $authentication,
             'series_number' => $series_number,
         ]);

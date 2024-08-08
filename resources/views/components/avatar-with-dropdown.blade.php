@@ -1,7 +1,7 @@
 <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
     class="text-white break-keep flex items-center text-sm pe-4 font-medium rounded-full hover:text-gray-400 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
     type="button">
-    <img class="w-8 h-8 me-2 rounded-full" src="{{ Vite::asset('resources/images/profile.png') }}" alt="user photo">
+    <img class="w-8 h-8 me-2 rounded-full" src="{{ asset('images/profile.png') }}" alt="user photo">
     {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
