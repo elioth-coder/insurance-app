@@ -1,4 +1,4 @@
-@props(['size'=>'58px'])
+@props(['size'=>'8'])
 
 @php
     $defaults = [
@@ -7,9 +7,9 @@
 @endphp
 
 <a href="/" {{ $attributes($defaults) }}>
-    <x-logo class="w-[{{ $size }}] h-[{{ $size }}] mr-2" />
+    <x-logo class="w-{{ $size }} h-{{ $size }} mr-2" />
     @if ($slot->isEmpty())
-        CTPL Insurance
+        iVeIM System <sup>v1.0.0</sup>
     @else
         {{ $slot }}
     @endif

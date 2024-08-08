@@ -20,9 +20,16 @@ class SessionController extends Controller
             'password' => ['required'],
         ]);
 
-        if (! Auth::attempt($attributes)) {
+        if (!Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
                 'credential' => 'Incorrect username or password',
+            ]);
+        }
+
+        if(Auth::user()->status=='inactive') {
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'credential' => 'Cannot login, your account is locked by admin',
             ]);
         }
 

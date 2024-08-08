@@ -1,8 +1,7 @@
 <x-layout :sidebar="false">
-    <section class="w-full">
+    <section class="w-full py-8">
         <div class="flex flex-col items-center justify-center px-6 mx-auto">
-            {{-- <x-logo-brand class="mb-6" /> --}}
-            <x-card>
+            <x-card class="sm:max-w-md">
                 <x-card-header>Sign in to your account</x-card-header>
                 @error('credential')
                     <x-alert color="red" id="credential_error">
@@ -35,11 +34,11 @@
                             class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot
                             password?</a>
                     </div>
-                    <x-forms.button type="submit" color="primary">Sign in</x-forms.button>
-                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                    <x-forms.button type="submit" color="violet">Sign in</x-forms.button>
+                    {{-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                         Don’t have an account yet? <a href="/register"
                             class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
-                    </p>
+                    </p> --}}
                 </x-forms.form>
             </x-card>
         </div>

@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/data-table.css', 'resources/js/app.js'])
     <style>
     html, body {
         overflow: hidden;
@@ -22,26 +22,56 @@
     </style>
 </head>
 
-<body class="bg-gray-100 font-hanken-grotesk pb-20">
+<body class="bg-gray-100 font-hanken-grotesk">
     <x-navbar />
     <div class="w-full">
-        <main class="max-w-[986px] mx-auto flex">
+        <main class="mx-auto flex">
             @if ($sidebar)
                 <x-sidebar />
             @endif
-            <div class="w-full px-5 pt-2 overflow-hidden hover:overflow-y-scroll" style="height: calc(100vh - 56px)">
-                @auth
-                    <x-breadcrumb :$breadcrumbs />
-                @endauth
-                @guest
-                    <div class="p-6"></div>
-                @endguest
-                <div class="py-2">
-                    {{ $slot }}
-                </div>
+            <div class="w-full pt-2 overflow-hidden overflow-y-scroll h-screen" style="height: calc(100vh - 80px)">
+                <section class="px-8">
+                    @auth
+                        <x-breadcrumb :$breadcrumbs />
+                    @endauth
+                    <div>
+                        {{ $slot }}
+                    </div>
+                </section>
+                <x-copyright />
             </div>
         </main>
     </div>
+    <script>
+        function clickTab(name) {
+            console.log('called clickTab().');
+            let button = document.querySelector(`#${name}-tab`);
+
+            if(button) {
+                console.log({button});
+                button.click();
+
+                console.log(button.getAttribute('aria-selected'));
+                if(button.getAttribute('aria-selected')=='true') {
+                    return;
+                }
+            }
+
+            setTimeout(() => {
+                clickTab(name);
+            }, 1000);
+        }
+
+        (function() {
+            name = 'dashboard';
+
+            @if (request()->is('subagents') || request()->is('subagents/*')) name='users'; @endif
+            @if (request()->is('coc_series') || request()->is('coc_series/*')) name='series'; @endif
+
+            clickTab(name);
+        })();
+    </script>
+
     {{ $script }}
 </body>
 </html>

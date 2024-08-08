@@ -30,7 +30,7 @@
         </button>
     </x-forms.form>
 
-    <div class="mx-auto max-w-4xl">
+    <div class="mx-auto">
         @if (session('message'))
             <x-alerts.success id="alert-client">
                 {{ session('message') }}
@@ -40,7 +40,7 @@
 
     <section class="mx-auto w-auto">
         <x-clients.card-horizontal :$client />
-        <div class="max-w-4xl mt-5 mx-auto">
+        <div class="mt-5 mx-auto">
             <x-clients.tabs-horizontal :$client />
         </div>
     </section>

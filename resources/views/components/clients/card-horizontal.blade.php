@@ -10,7 +10,7 @@
 @endphp
 
 <section
-    class="mx-auto w-full flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow max-w-4xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    class="mx-auto w-full flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
     <div class="flex w-full">
         <section class="px-10 flex flex-1 justify-center items-center flex-col rounded-t-lg w-48 rounded-s-lg">
             <div class="rounded-full h-36 w-36 border bg-primary-500/90 flex items-center justify-center">

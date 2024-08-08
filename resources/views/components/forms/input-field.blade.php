@@ -1,4 +1,4 @@
-@props(['name','type','label','placeholder','required'=>false,'value'=>''])
+@props(['name','type','label','placeholder','required'=>false,'disabled'=>false,'value'=>''])
 
 @php
     $errorClass = $errors->has($name) ? 'border-red-500' : '';
@@ -10,8 +10,9 @@
         :$name
         :$type
         :$placeholder
-        :class="$errorClass"
+        :class="implode(' ', [$errorClass,($disabled ? 'bg-gray-500/25 cursor-not-allowed' : '')])"
         :$required
+        :$disabled
         :$value
     />
     @error($name)
