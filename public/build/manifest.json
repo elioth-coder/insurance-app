@@ -1,0 +1,18 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BLJwQTgw.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/data-table.css": {
+    "file": "assets/data-table-eVyCWxog.css",
+    "src": "resources/css/data-table.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DuFYOl54.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
