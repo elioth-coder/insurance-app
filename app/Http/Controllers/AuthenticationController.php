@@ -11,6 +11,12 @@ use Carbon\Carbon;
 
 class AuthenticationController extends Controller
 {
+    public function claim($report_number)
+    {
+        return view('authentication.claim', [
+            'report_number' => $report_number,
+        ])->with(['success' => 'Successfully claimed insurance.']);
+    }
 
     public function print($id) {
         $authentication = Authentication::findOrFail($id);

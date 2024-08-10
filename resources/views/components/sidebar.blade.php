@@ -91,10 +91,30 @@
                 <p class="text-center text-xs font-bold">Users</p>
             </button>
         </li>
+
+        <li role="presentation">
+            <button
+                id="interagency-tab"
+                type="button"
+                role="tab"
+                data-tabs-target="#interagency"
+                aria-selected="false"
+                aria-controls="interagency"
+                class="group w-full py-3 text-gray-900 hover:bg-violet-200 text-center items-center justify-center">
+                <i class="font-medium inline-flex">
+                    <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.5 3a3.5 3.5 0 0 0-3.456 4.06L8.143 9.704a3.5 3.5 0 1 0-.01 4.6l5.91 2.65a3.5 3.5 0 1 0 .863-1.805l-5.94-2.662a3.53 3.53 0 0 0 .002-.961l5.948-2.667A3.5 3.5 0 1 0 17.5 3Z"/>
+                    </svg>
+                </i>
+                <p class="text-center text-xs font-bold">Interagency</p>
+            </button>
+        </li>
     </ul>
     <section class="w-full text-sm" id="default-tab-content">
         <div id="dashboard" role="tabpanel" aria-labelled-by="dashboard-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <h2 class="text-2xl font-black px-5">Dashboard</h2>
+            <h2 class="text-2xl font-black px-5">
+                <a href="/dashboard/">Dashboard</a>
+            </h2>
             <hr>
             <ul class="space-y-1 font-medium">
                 <li role="presentation">
@@ -188,6 +208,39 @@
                 </li>
             </ul>
         </div>
-
+        <div id="interagency" role="tabpanel" aria-labelled-by="interagency-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            <h2 class="text-2xl font-black px-5">Interagency</h2>
+            <hr>
+            <ul class="space-y-1 font-medium">
+                <li role="presentation">
+                    <a href="/interagency/hpg/?tab=hpg"
+                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='hpg') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <img src="{{ asset('images/hpg-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
+                        <span class="">Hiway Patrol Group (HPG)</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="/interagency/hpg/?tab=hpg"
+                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='lto') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <img src="{{ asset('images/lto-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
+                        <span class="">Land Transportation Office (LTO)</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="/interagency/hpg/?tab=hpg"
+                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='boc') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <img src="{{ asset('images/boc-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
+                        <span class="">Bureau of Customs (BOC)</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="/interagency/hpg/?tab=hpg"
+                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='ltfrb') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                        <img src="{{ asset('images/ltfrb-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
+                        <span class="">Land Transportation and Franchising Regulatory Board (LTFRB)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
 </div>

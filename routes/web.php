@@ -7,8 +7,18 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SubagentController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AuthenticationController;
-use App\Models\Authentication;
+use App\Http\Controllers\InteragencyController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+
+
+Route::middleware('auth')->group(function () {
+Route::prefix('interagency')->group(function () {
+Route::controller(InteragencyController::class)->group(function () {
+    Route::get('/hpg', 'hpg');
+});
+});
+});
 
 
 Route::middleware('auth')->group(function () {
@@ -21,6 +31,7 @@ Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/{id}/edit', 'edit');
     Route::patch('/{id}', 'update');
     Route::delete('/{id}', 'destroy');
+    Route::get('/claim/{id}', 'claim');
 });
 });
 });
@@ -111,6 +122,25 @@ Route::get('/authentication/{id}/print', [AuthenticationController::class, 'prin
 
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $sql =
+       "SELECT
+            DISTINCT(`u`.`branch`) AS `branch`,
+            COUNT(`csn`.`series_number`) AS `count`
+            FROM `coc_series_numbers` `csn`
+        INNER JOIN `users` `u` ON `csn`.`agent_id`=`u`.`id`
+            WHERE `csn`.`status`='used'
+        GROUP BY `u`.`branch`";
+
+    $uploads = DB::select($sql);
+
+    return view('dashboard', [
+        'uploads' => $uploads,
+    ]);
 })->middleware('auth');
+Route::get('/logs', function () {
+
+    return view('logs');
+})->middleware('auth');
+
+
 

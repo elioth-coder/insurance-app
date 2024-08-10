@@ -26,7 +26,7 @@
                             <th class="px-6 py-4">Type</th>
                             <th class="px-6 py-4">COC No.</th>
                             <th class="px-6 py-4">Plate No.</th>
-                            <th class="px-6 py-4">MV Type</th>
+                            <th class="px-6 py-4">MV File No.</th>
                             <th class="px-6 py-4">Assured Name</th>
                             <th class="px-6 py-4">Address</th>
                             <th class="px-6 py-4">Action</th>
@@ -38,7 +38,7 @@
                                 <td class="group-hover:bg-violet-200 px-8 py-6 capitalize">{{ $authentication->type }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->coc_number }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->plate_number ?? '--' }}</td>
-                                <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->lto_mv_type }} | {{ $authentication->vehicle_type }}</td>
+                                <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->mv_file_number ?? '--' }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->assured_name }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->assured_address  }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">

@@ -77,6 +77,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ env('APP_NAME') }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -94,133 +98,53 @@
 </head>
 
 <body class="flex flex-col">
-    <header class="block text-center relative">
-        <img class="mx-auto block" style="height: 100px;" src="{{ asset('images/insurance-logo.png') }}" />
-        <p class="mt-3">Republic of the Philippines</p>
-        <p>DEPARTMENT OF INSURANCE COMMISION</p>
-        <h3 class="text-xl font-bold">INSURANCE COMMISSION OFFICE</h3>
-        <p class="text-xs my-1">East Avenue, Quezon City</p>
-        <h2 class="text-2xl font-bold my-2">CONFIRMATION OF COVER</h2>
+    <header class="block text-center relative mx-5">
+        <h3 class="text-lg font-bold">Integrated Vehicle Insurance Monitoring System</h3>
+        <section class="flex items-center justify-center space-x-2">
+            <img class="block" style="height: 90px;" src="{{ asset('images/insurance-logo.png') }}" />
+            <svg class="w-[100px] h-[100px] text-green-500 block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z" clip-rule="evenodd"/>
+            </svg>
+        </section>
+        <h1 class="text-2xl text-center font-bold text-green-500">VERIFIED CERTIFICATE OF COVERAGE</h1>
     </header>
     <main class="relative flex flex-col">
-        <table class="table border mx-auto w-full">
-            <tbody>
-                <tr>
-                    <td colspan="4" class="text-center font-bold border-b bg-gray-300 py-1">INSURED DETAILS</td>
-                </tr>
-                <tr class="border-b">
-                    <td colspan="2" class="p-2 border-r">
-                        <p class="font-bold">IC-LTMS Authentication Code:</p>
-                        <p class="text-center">1584-4A57-A8D9-02C7</p>
-                    </td>
-                    <td colspan="2" class="p-2">
-                        <p class="font-bold">Transaction Date:</p>
-                        <p class="text-center">{{ date('M d, Y h:i A', strtotime($authentication->created_at)) }}</p>
-                    </td>
-                </tr>
-
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Registration Type</td>
-                    <td class="p-2 border-r uppercase">{{ $authentication->type }}</td>
-                    <td class="p-2 border-r font-bold">POLICY Number</td>
-                    <td class="p-2 border-r">{{ $authentication->policy_number }}</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Assured Name</td>
-                    <td class="p-2 border-r uppercase">{{ $authentication->assured_name }}</td>
-                    <td class="p-2 border-r font-bold">COC Number</td>
-                    <td class="p-2">{{ $authentication->coc_number }}</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Assured Address</td>
-                    <td class="p-2 border-r">{{ $authentication->assured_address }}</td>
-                    <td class="p-2 border-r font-bold">OR Number</td>
-                    <td class="p-2">{{ $authentication->or_number }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-center font-bold border-b bg-gray-300 py-1">VEHICLE DETAILS</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Plate Number</td>
-                    <td class="p-2 border-r">{{ $authentication->plate_number ?? '--' }}</td>
-                    <td class="p-2 border-r font-bold">MV File Number</td>
-                    <td class="p-2">{{ $authentication->mv_file_number ?? '--' }}</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Chassis Number</td>
-                    <td class="p-2 border-r">{{ $authentication->serial_number }}</td>
-                    <td class="p-2 border-r font-bold">Engine Number</td>
-                    <td class="p-2">{{ $authentication->engine_number ?? '--' }}</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">LTO MV Type</td>
-                    <td colspan="3" class="p-2 border-r uppercase">
-                        {{ $authentication->lto_mv_type }} - {{ $mv_types[$authentication->lto_mv_type] ?? '--' }}
-                    </td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Vehicle Type</td>
-                    <td colspan="3" class="p-2 border-r uppercase">
-                        {{ $authentication->vehicle_type }} -
-                        {{ $premiums[$authentication->vehicle_type]['description'] ?? '--' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-center font-bold border-b bg-gray-300 py-1">PERIOD OF INSURANCE</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Agent Name</td>
-                    <td colspan="3" class="p-2 border-r uppercase">
-                        {{ $series_number->agent->first_name }}
-                        {{ $series_number->agent->last_name }} -
-                        [{{ $series_number->agent->branch }}]
-                    </td>
-                </tr>
-                <tr class="border-b">
-                    <td colspan="2" class="p-2 border-r"><b>FROM:</b>
-                        {{ date('M d, Y h:i A', strtotime($authentication->inception_date)) }}</td>
-                    <td colspan="2" class="p-2"><b>TO:</b>
-                        {{ date('M d, Y h:i A', strtotime($authentication->expiry_date)) }}</td>
-                </tr>
-                <tr class="border-b">
-                    <td class="p-2 border-r font-bold">Status</td>
-                    <td class="p-2 border-r capitalize">Valid</td>
-                    <td class="p-2 border-r font-bold">Premium Amount</td>
-                    <td class="p-2">{{ $premiums[$authentication->vehicle_type]['amount'] ?? '--' }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="flex flex-col mt-4 items-center justify-center space-y-5">
-            <section class="block">
-                <p class="text-xs text-justify" style="text-indent: 30px;">This Confirmation of Cover is evidence of the
-                    policy of insurance required under Chapter VI - Compulsory Motor Vehicle Insurance of the Insurance
-                    Code, as amended by Presidential Decreee No. 1814</p>
-                <div class="mt-10 mx-auto text-center" style="width: 300px;">
-                    <p>_____________________________</p>
-                    <p>Authorized Signature</p>
-                </div>
-            </section>
-            <section class="block box-border border-2 border-black w-fit mx-auto"
-                style="width: 210px; min-width: 210px; height: 210px; min-height: 210px; padding: 5px;">
-                {!! QrCode::size(200)->generate(
-                    "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view",
-                ) !!}
-            </section>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">Official Receipt Number</p>
+            <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
         </div>
-        <img class="absolute" style="top: calc(50% - 150px); left: calc(50% - 150px); height: 300px; opacity: 0.3;"
-            src="{{ asset('images/insurance-logo.png') }}" />
-    </main>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">COC Number</p>
+            <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
+        </div>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">Policy Number</p>
+            <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
+        </div>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">Assured Name</p>
+            <p class="text-xl font-bold">{{ $authentication->assured_name }}</p>
+        </div>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">Assured Address</p>
+            <p class="text-xl font-bold">{{ $authentication->assured_name }}</p>
+        </div>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+            <p class="">Plate Number</p>
+            <p class="text-xl font-bold">{{ $authentication->plate_number ?? '--' }}</p>
+        </div>
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full mt-5">
+            <p class="">MV File Number</p>
+            <p class="text-xl font-bold">{{ $authentication->mv_file_number ?? '--' }}</p>
+        </div>
+        <section class="block box-border border-2 border-black w-fit mx-auto"
+            style="width: 210px; min-width: 210px; height: 210px; min-height: 210px; padding: 5px;">
+            {!! QrCode::size(200)->generate(
+                "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view",
+            ) !!}
+        </section>
     <footer class="text-center py-5">
-        <a href="{{ "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/print" }}"
-            class="text-white bg-violet-700 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">
-            <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
-                    d="M16.444 18H19a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2.556M17 11V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v6h10ZM7 15h10v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-4Z" />
-            </svg>
 
-            Print
-        </a>
     </footer>
 </body>
 

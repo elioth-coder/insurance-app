@@ -32,22 +32,30 @@
         <div class="text-center max-w-4xl mx-auto space-y-5">
             <h1 class="text-7xl">Welcome! to iVeIM System v1.0.0</h1>
             <p>
-                The system that enhances the communication and data sharing between the LTO, Highway Patrol Group, and
-                the Insurance Commission, ensuring that all relevant parties have real-time access to a vehicle's
+                The system that enhances the communication and data sharing between the LTO, Highway Patrol Group,
+                Insurance Commission, Bureau of Customs and the LTFRB ensuring that all relevant parties have real-time access to a vehicle's
                 insurance status.
             </p>
         </div>
-        <div class="flex space-x-3 justify-center">
-            <a href="#" class="block">
+        <div class="flex space-x-2 justify-center">
+            <a target="_blank" title="LTO Official Website" href="https://lto.gov.ph" class="block">
                 <img style="height: 150px;" src="{{ asset('images/lto-logo.png') }}" alt="">
             </a>
-            <a href="#" class="block">
+            <a target="_blank" title="Insurance Commission Official Website" href="https://www.insurance.gov.ph/" class="block">
+                <img style="height: 150px;" class="w-full"
+                    src="{{ asset('images/ic-logo.png') }}" alt="">
+            </a>
+            <a target="_blank" title="HPG Official Website" href="https://hpg.pnp.gov.ph/" class="block">
                 <img style="height: 150px;" class="w-full" src="{{ asset('images/hpg-logo.png') }}"
                     alt="">
             </a>
-            <a href="#" class="block">
+            <a target="_blank" title="Bureau of Customs Official Website" href="https://www.customs.gov.ph/" class="block">
                 <img style="height: 150px;" class="w-full"
-                    src="{{ asset('images/insurance-logo.png') }}" alt="">
+                    src="{{ asset('images/boc-logo.png') }}" alt="">
+            </a>
+            <a target="_blank" title="LTFRB Official Website" href="https://www.ltfrb.gov.ph/" class="block">
+                <img style="height: 150px;" class="w-full"
+                    src="{{ asset('images/ltfrb-logo.png') }}" alt="">
             </a>
         </div>
     </div>
