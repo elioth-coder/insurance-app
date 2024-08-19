@@ -100,7 +100,7 @@
 <body>
     <header class="mx-auto w-full text-center relative">
         <img class="absolute" style="top: 0; left: 20px; height: 100px;"
-            src="{{ asset('images/insurance-logo.png') }}" />
+            src="{{ asset('images/ic-logo.png') }}" />
         <p class="mt-3">Republic of the Philippines</p>
         <p>DEPARTMENT OF INSURANCE COMMISION</p>
         <h3 class="text-xl font-bold">INSURANCE COMMISSION OFFICE</h3>
@@ -209,7 +209,7 @@
             </section>
         </div>
         <img class="absolute" style="top: calc(50% - 150px); left: calc(50% - 150px); height: 300px; opacity: 0.3;"
-            src="{{ asset('images/insurance-logo.png') }}" />
+            src="{{ asset('images/ic-logo.png') }}" />
     </main>
     <footer></footer>
 </body>

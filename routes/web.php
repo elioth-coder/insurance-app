@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\CocSeriesController;
+use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\SubagentController;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\InteragencyController;
@@ -37,8 +37,8 @@ Route::controller(AuthenticationController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-Route::prefix('coc_series')->group(function () {
-Route::controller(CocSeriesController::class)->group(function () {
+Route::prefix('series')->group(function () {
+Route::controller(SeriesController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/create', 'create');
     Route::post('/', 'store');
@@ -51,8 +51,8 @@ Route::controller(CocSeriesController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-Route::prefix('subagents')->group(function () {
-Route::controller(SubagentController::class)->group(function () {
+Route::prefix('agents')->group(function () {
+Route::controller(AgentController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/create', 'create');
     Route::post('/', 'store');

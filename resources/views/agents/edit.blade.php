@@ -1,12 +1,16 @@
 @php
     $breadcrumbs = [
         [
-            'url' => '/subagents',
-            'title' => 'Subagents',
+            'url' => '/agents',
+            'title' => 'Agents',
         ],
         [
-            'url' => '/subagents/create',
-            'title' => 'Add new',
+            'url' => '/agents/' . $agent->id,
+            'title' => $agent->first_name . ' ' . $agent->last_name,
+        ],
+        [
+            'url' => '/agents/' . $agent->id . '/edit',
+            'title' => 'Edit',
         ],
     ];
 @endphp
@@ -15,14 +19,14 @@
     <div class="w-full pb-6 pt-2">
         <div class="max-w-xl">
             @if (session('message'))
-                <x-alerts.success id="alert-subagent">
+                <x-alerts.success id="alert-agent">
                     {{ session('message') }}
                 </x-alerts.success>
             @endif
         </div>
         <x-card class="max-w-xl">
-            <x-card-header>Register new Subagent</x-card-header>
-            <x-forms.form method="POST" action="/subagents">
+            <x-card-header>Update Agent Details</x-card-header>
+            <x-forms.form action="/agents/{{ $agent->id }}" method="POST" verb="PATCH">
                 <div class="flex space-x-2">
                     <x-forms.input-field
                         class="w-full"
@@ -30,6 +34,8 @@
                         type="text"
                         label="First name"
                         placeholder="Enter first name"
+                        value="{{ $agent->first_name ?? '' }}"
+                        disabled
                         required
                     />
                     <x-forms.input-field
@@ -38,6 +44,8 @@
                         type="text"
                         label="Last name"
                         placeholder="Enter last name"
+                        value="{{ $agent->last_name ?? '' }}"
+                        disabled
                         required
                     />
                 </div>
@@ -47,6 +55,8 @@
                     type="email"
                     label="Email address"
                     placeholder="Enter email address"
+                    value="{{ $agent->email ?? '' }}"
+                    disabled
                     required
                 />
                 <div class="flex space-x-2">
@@ -56,6 +66,7 @@
                         type="text"
                         label="Branch"
                         placeholder="Enter branch"
+                        value="{{ $agent->branch ?? '' }}"
                         required
                     />
                     <x-forms.input-field
@@ -64,6 +75,8 @@
                         type="text"
                         label="Mobile no."
                         placeholder="Enter mobile no."
+                        value="{{ $agent->mobile_number ?? '' }}"
+                        required
                     />
                 </div>
                 <div class="flex space-x-2">
@@ -86,17 +99,16 @@
                 </div>
                 <div class="flex space-x-2">
                     <x-forms.select-field class="w-full" name="status" label="Status" placeholder="Set status">
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value="active" {{ ($agent->status=='active') ? 'selected' : ''}}>Active</option>
+                        <option value="inactive" {{ ($agent->status=='inactive') ? 'selected' : ''}}>Inactive</option>
                     </x-forms.select-field>
                     <div class="w-full"></div>
                 </div>
-                <hr class="my-1">
                 <div class="flex space-x-2 justify-end">
                     <span class="inline-block w-32">
-                        <x-forms.button type="submit" color="violet">Submit</x-forms.button>
+                        <x-forms.button type="submit" color="violet">Update</x-forms.button>
                     </span>
-                    <a href="/subagents" class="text-center flex items-center justify-center w-auto px-10 border border-gray-500 rounded-lg bg-white hover:bg-gray-500 hover:text-white">
+                    <a href="/agents" class="text-center flex items-center justify-center w-auto px-10 border border-gray-500 rounded-lg bg-white hover:bg-gray-500 hover:text-white">
                         Back
                     </a>
                 </div>

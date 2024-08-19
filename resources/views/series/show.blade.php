@@ -1,12 +1,15 @@
 @php
+    $series_start = ($series->prefix ?? '') . $series->start . ($series->suffix ?? '');
+    $series_end   = ($series->prefix ?? '') . $series->end   . ($series->suffix ?? '');
+
     $breadcrumbs = [
         [
-            'url' => '/coc_series',
-            'title' => 'COC Series',
+            'url' => '/series',
+            'title' => 'Series',
         ],
         [
-            'url' => '/coc_series/' . $series->id,
-            'title' => ($series->prefix ?? '') . $series->start . '-' . $series->end,
+            'url' => '/series/' . $series->id,
+            'title' => $series_start . ' - ' . $series_end,
         ]
     ];
 @endphp

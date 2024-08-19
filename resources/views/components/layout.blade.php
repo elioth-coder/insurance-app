@@ -46,39 +46,6 @@
             </div>
         </main>
     </div>
-    <script>
-        function clickTab(name) {
-            console.log('called clickTab().');
-            let button = document.querySelector(`#${name}-tab`);
-
-            if(button) {
-                console.log({button});
-                button.click();
-
-                console.log(button.getAttribute('aria-selected'));
-                if(button.getAttribute('aria-selected')=='true') {
-                    return;
-                }
-            }
-
-            setTimeout(() => {
-                clickTab(name);
-            }, 1000);
-        }
-
-        (function() {
-            name = 'dashboard';
-
-            @if (request()->is('subagents') || request()->is('subagents/*')) name='users'; @endif
-            @if (request()->is('coc_series') || request()->is('coc_series/*')) name='series'; @endif
-            @if (request()->is('authentication') || request()->is('authentication/*')) name='authentication'; @endif
-            @if (request()->is('interagency') || request()->is('interagency/*')) name='interagency'; @endif
-            @if (request()->is('reports') || request()->is('reports/*')) name='reports'; @endif
-
-            clickTab(name);
-        })();
-    </script>
-
     {{ $script }}
 </body>
 </html>

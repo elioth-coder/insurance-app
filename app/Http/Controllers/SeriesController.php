@@ -9,13 +9,13 @@ use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
 
-class CocSeriesController extends Controller
+class SeriesController extends Controller
 {
     public function index()
     {
         $serieses = CocSeries::latest()->get();
 
-        return view('coc_series.index', [
+        return view('series.index', [
             'serieses' => $serieses,
         ]);
     }
@@ -24,7 +24,7 @@ class CocSeriesController extends Controller
     {
         $series = CocSeries::find($id);
 
-        return view('coc_series.show', [
+        return view('series.show', [
             'series' => $series
         ]);
     }
@@ -33,7 +33,7 @@ class CocSeriesController extends Controller
     {
         $agents = User::where('status','active')->get();
 
-        return view('coc_series.create', [
+        return view('series.create', [
             'agents' => $agents,
         ]);
     }
@@ -81,7 +81,7 @@ class CocSeriesController extends Controller
         CocSeriesNumber::insert($data);
         $range = $seriesAttributes['start']. ' - ' . $seriesAttributes['end'];
 
-        return redirect('/coc_series/create')->with([
+        return redirect('/series/create')->with([
             'message' => "Successfully assigned series $range to $agent->first_name $agent->last_name."
         ]);
     }

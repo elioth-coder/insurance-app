@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
-class SubagentController extends Controller
+class AgentController extends Controller
 {
 
     public function lock($id) {
         $user = User::findOrFail($id);
 
         $user->update(['status' => 'inactive']);
-        return redirect("/subagents/")->with([
+        return redirect("/agents/")->with([
             'message' => "Successfully locked the account of $user->first_name $user->last_name."
         ]);
     }
@@ -23,32 +23,32 @@ class SubagentController extends Controller
         $user = User::findOrFail($id);
 
         $user->update(['status' => 'active']);
-        return redirect("/subagents/")->with([
+        return redirect("/agents/")->with([
             'message' => "Successfully unlocked the account of $user->first_name $user->last_name."
         ]);
     }
 
     public function index()
     {
-        $subagents = User::where('role', 'subagent')->latest()->get();
+        $agents = User::where('role', 'agent')->latest()->get();
 
-        return view('subagents.index', [
-            'subagents' => $subagents,
+        return view('agents.index', [
+            'agents' => $agents,
         ]);
     }
 
     public function edit($id)
     {
-        $subagent = User::find($id);
+        $agent = User::find($id);
 
-        return view('subagents.edit', [
-            'subagent' => $subagent
+        return view('agents.edit', [
+            'agent' => $agent
         ]);
     }
 
     public function create()
     {
-        return view('subagents.create');
+        return view('agents.create');
     }
 
     public function store(Request $request)
@@ -63,11 +63,11 @@ class SubagentController extends Controller
             'password' => ['required', 'confirmed', Password::min(6)],
         ]);
 
-        $userAttributes['role'] = 'subagent';
+        $userAttributes['role'] = 'agent';
         $user = User::create($userAttributes);
 
-        return redirect('/subagents/create')->with([
-            'message' => "Successfully registered $user->first_name $user->last_name as a subagent."
+        return redirect('/agents/create')->with([
+            'message' => "Successfully registered $user->first_name $user->last_name as an agent."
         ]);
     }
 
@@ -84,7 +84,7 @@ class SubagentController extends Controller
 
         $user->update($userAttributes);
 
-        return redirect("/subagents/")->with([
+        return redirect("/agents/")->with([
             'message' => "Successfully updated details of $user->first_name $user->last_name."
         ]);
     }

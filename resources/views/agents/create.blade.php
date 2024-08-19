@@ -1,16 +1,12 @@
 @php
     $breadcrumbs = [
         [
-            'url' => '/subagents',
-            'title' => 'Subagents',
+            'url' => '/agents',
+            'title' => 'Agents',
         ],
         [
-            'url' => '/subagents/' . $subagent->id,
-            'title' => $subagent->first_name . ' ' . $subagent->last_name,
-        ],
-        [
-            'url' => '/subagents/' . $subagent->id . '/edit',
-            'title' => 'Edit',
+            'url' => '/agents/create',
+            'title' => 'Add new',
         ],
     ];
 @endphp
@@ -19,14 +15,14 @@
     <div class="w-full pb-6 pt-2">
         <div class="max-w-xl">
             @if (session('message'))
-                <x-alerts.success id="alert-subagent">
+                <x-alerts.success id="alert-agent">
                     {{ session('message') }}
                 </x-alerts.success>
             @endif
         </div>
         <x-card class="max-w-xl">
-            <x-card-header>Register new Subagent</x-card-header>
-            <x-forms.form action="/subagents/{{ $subagent->id }}" method="POST" verb="PATCH">
+            <x-card-header>Register new Agent</x-card-header>
+            <x-forms.form method="POST" action="/agents">
                 <div class="flex space-x-2">
                     <x-forms.input-field
                         class="w-full"
@@ -34,8 +30,6 @@
                         type="text"
                         label="First name"
                         placeholder="Enter first name"
-                        value="{{ $subagent->first_name ?? '' }}"
-                        disabled
                         required
                     />
                     <x-forms.input-field
@@ -44,8 +38,6 @@
                         type="text"
                         label="Last name"
                         placeholder="Enter last name"
-                        value="{{ $subagent->last_name ?? '' }}"
-                        disabled
                         required
                     />
                 </div>
@@ -55,8 +47,6 @@
                     type="email"
                     label="Email address"
                     placeholder="Enter email address"
-                    value="{{ $subagent->email ?? '' }}"
-                    disabled
                     required
                 />
                 <div class="flex space-x-2">
@@ -64,9 +54,8 @@
                         class="w-full"
                         name="branch"
                         type="text"
-                        label="Branch"
-                        placeholder="Enter branch"
-                        value="{{ $subagent->branch ?? '' }}"
+                        label="Company/Branch"
+                        placeholder="Enter company/branch"
                         required
                     />
                     <x-forms.input-field
@@ -75,8 +64,6 @@
                         type="text"
                         label="Mobile no."
                         placeholder="Enter mobile no."
-                        value="{{ $subagent->mobile_number ?? '' }}"
-                        required
                     />
                 </div>
                 <div class="flex space-x-2">
@@ -99,16 +86,19 @@
                 </div>
                 <div class="flex space-x-2">
                     <x-forms.select-field class="w-full" name="status" label="Status" placeholder="Set status">
-                        <option value="active" {{ ($subagent->status=='active') ? 'selected' : ''}}>Active</option>
-                        <option value="inactive" {{ ($subagent->status=='inactive') ? 'selected' : ''}}>Inactive</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
                     </x-forms.select-field>
                     <div class="w-full"></div>
                 </div>
+                <hr class="my-1">
                 <div class="flex space-x-2 justify-end">
-                    <span class="inline-block w-44">
-                        <x-forms.button type="submit" color="primary">Submit</x-forms.button>
+                    <span class="inline-block w-32">
+                        <x-forms.button type="submit" color="violet">Submit</x-forms.button>
                     </span>
-
+                    <a href="/agents" class="text-center flex items-center justify-center w-auto px-10 border border-gray-500 rounded-lg bg-white hover:bg-gray-500 hover:text-white">
+                        Back
+                    </a>
                 </div>
             </x-forms.form>
         </x-card>

@@ -1,11 +1,11 @@
 @php
     $breadcrumbs = [
         [
-            'url' => '/coc_series',
-            'title' => 'COC Series',
+            'url' => '/series',
+            'title' => 'Series',
         ],
         [
-            'url' => '/coc_series/create',
+            'url' => '/series/create',
             'title' => 'Assign',
         ],
     ];
@@ -23,7 +23,7 @@
             </div>
             <x-card class="max-w-xl">
                 <x-card-header>Assign Series</x-card-header>
-                <x-forms.form method="POST" action="/coc_series">
+                <x-forms.form method="POST" action="/series">
                     <x-forms.select-field class="w-full" name="agent_id" label="Subagent"
                         placeholder="-- Select subagent --" required>
                         @foreach ($agents as $agent)

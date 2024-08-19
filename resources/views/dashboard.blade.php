@@ -2,9 +2,9 @@
     <h2 id="uploads" class="pt-2 text-xl mx-1 mt-5 mb-2">Total Uploads</h2>
     <section class="flex space-x-5">
         @foreach ($uploads as $upload)
-            <div class="border bg-white px-12 py-3 rounded-lg flex flex-col items-center justify-between w-auto">
+            <div class="border bg-white text-violet-800 px-12 py-3 rounded-lg flex flex-col items-center justify-between w-auto">
                 <h1 class="text-center text-7xl">{{ $upload->count }}</h1>
-                <h2 class="text-center text-xl">{{ $upload->branch }}</h2>
+                <h2 class="text-center text-xl text-black">{{ $upload->branch }}</h2>
             </div>
         @endforeach
     </section>
