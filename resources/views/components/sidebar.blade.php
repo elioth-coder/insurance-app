@@ -161,13 +161,17 @@ $segment_0 = $segments[0] ?? "";
                 <li role="presentation">
                     <a href="/agents/create"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('agents/create')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">New Agent</span>
+                        <span class="">
+                            New {{ (Auth::user()->role=='agent') ? 'Subagent' : 'Agent'}}
+                        </span>
                     </a>
                 </li>
                 <li role="presentation">
                     <a href="/agents"
                         class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->is('agents')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">Agents Table</span>
+                        <span class="">
+                            {{ (Auth::user()->role=='agent') ? 'Subagent' : 'Agent'}}s Table
+                        </span>
                     </a>
                 </li>
             </ul>

@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(CocSeriesNumber::class);
     }
+
+    public function subagents(): HasMany
+    {
+        return $this->hasMany(Subagent::class);
+    }
 }

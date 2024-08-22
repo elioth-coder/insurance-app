@@ -135,7 +135,6 @@
             async function fetchVehicleDetails(data) {
                 let headersList = {
                     "Accept": "*/*",
-                    // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
                     "Content-Type": "application/json"
                 }
 
@@ -150,27 +149,6 @@
 
                 let jsonData = await response.json();
                 return jsonData;
-            }
-
-            async function testFetch() {
-                let headersList = {
-                    "Accept": "*/*",
-                    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-                    "Content-Type": "application/json"
-                }
-
-                let bodyContent = JSON.stringify({
-                    "plate_no": "356nhx"
-                });
-
-                let response = await fetch("https://matryxph.com/api/Search-LTMS", {
-                    method: "POST",
-                    body: bodyContent,
-                    headers: headersList
-                });
-
-                let data = await response.text();
-                console.log(data);
             }
 
             (function() {
