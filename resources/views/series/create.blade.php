@@ -39,6 +39,7 @@
                         <x-forms.input-field class="w-full" name="prefix" type="text" label="Prefix (optional)"
                             placeholder="Enter prefix" />
                         <x-forms.input-field class="w-full" name="suffix" type="text" label="Suffix (optional)"
+                            value="{{ (old('suffix')) ? old('suffix') : date('Y') }}"
                             placeholder="Enter suffix" />
                     </div>
                     <div class="flex space-x-2">

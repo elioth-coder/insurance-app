@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Validation\Rules\Password;
 
 class AgentController extends Controller

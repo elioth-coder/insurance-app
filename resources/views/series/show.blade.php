@@ -1,6 +1,6 @@
 @php
-    $series_start = ($series->prefix ?? '') . $series->start . ($series->suffix ?? '');
-    $series_end   = ($series->prefix ?? '') . $series->end   . ($series->suffix ?? '');
+    $series_start = ($series->prefix ?? '') . "|$series->start|" . ($series->suffix ?? '');
+    $series_end   = ($series->prefix ?? '') . "|$series->end|"   . ($series->suffix ?? '');
 
     $breadcrumbs = [
         [
@@ -58,7 +58,6 @@
                         const dataTable = new DataTable("#assigned_series-table", {
                             fixedHeight: true,
                             searchable: true,
-                            perPage: 5,
                         });
                     }
                 }, 1000);

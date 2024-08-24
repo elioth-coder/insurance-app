@@ -15,7 +15,6 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "simple-datatables": "^9.0.4",
-        "sweetalert2": "^11.12.3"
+        "simple-datatables": "^9.0.4"
     }
 }

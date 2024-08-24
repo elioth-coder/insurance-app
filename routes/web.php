@@ -9,57 +9,58 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
 Route::middleware('auth')->group(function () {
-Route::prefix('interagency')->group(function () {
-Route::controller(InteragencyController::class)->group(function () {
-    Route::get('/hpg', 'hpg');
-});
-});
-});
-
-Route::middleware('auth')->group(function () {
-Route::prefix('authentication')->group(function () {
-Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/', 'index');
-    Route::get('/create', 'create');
-    Route::post('/', 'store');
-    Route::get('/{id}', 'show');
-    Route::get('/{id}/edit', 'edit');
-    Route::patch('/{id}', 'update');
-    Route::delete('/{id}', 'destroy');
-    Route::get('/claim/{id}', 'claim');
-});
-});
+    Route::prefix('interagency')->group(function () {
+        Route::controller(InteragencyController::class)->group(function () {
+            Route::get('/hpg', 'hpg');
+        });
+    });
 });
 
 Route::middleware('auth')->group(function () {
-Route::prefix('series')->group(function () {
-Route::controller(SeriesController::class)->group(function () {
-    Route::get('/', 'index');
-    Route::get('/create', 'create');
-    Route::post('/', 'store');
-    Route::get('/{id}', 'show');
-    Route::get('/{id}/edit', 'edit');
-    Route::patch('/{id}', 'update');
-    Route::delete('/{id}', 'destroy');
-});
-});
+    Route::prefix('authentication')->group(function () {
+        Route::controller(AuthenticationController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/create', 'create');
+            Route::post('/', 'store');
+            Route::get('/{id}', 'show');
+            Route::get('/{id}/edit', 'edit');
+            Route::patch('/{id}', 'update');
+            Route::delete('/{id}', 'destroy');
+            Route::get('/claim/{id}', 'claim');
+        });
+    });
 });
 
 Route::middleware('auth')->group(function () {
-Route::prefix('agents')->group(function () {
-Route::controller(AgentController::class)->group(function () {
-    Route::get('/', 'index');
-    Route::get('/create', 'create');
-    Route::post('/', 'store');
-    Route::get('/{id}', 'show');
-    Route::get('/{id}/edit', 'edit');
-    Route::patch('/{id}', 'update');
-    Route::delete('/{id}', 'destroy');
+    Route::prefix('series')->group(function () {
+        Route::controller(SeriesController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/create', 'create');
+            Route::get('/owned', 'owned');
+            Route::post('/', 'store');
+            Route::get('/{id}', 'show');
+            Route::get('/{id}/edit', 'edit');
+            Route::patch('/{id}', 'update');
+            Route::delete('/{id}', 'destroy');
+        });
+    });
+});
 
-    Route::patch('/{id}/lock', 'lock');
-    Route::patch('/{id}/unlock', 'unlock');
-});
-});
+Route::middleware('auth')->group(function () {
+    Route::prefix('agents')->group(function () {
+        Route::controller(AgentController::class)->group(function () {
+            Route::get('/', 'index');
+            Route::get('/create', 'create');
+            Route::post('/', 'store');
+            Route::get('/{id}', 'show');
+            Route::get('/{id}/edit', 'edit');
+            Route::patch('/{id}', 'update');
+            Route::delete('/{id}', 'destroy');
+
+            Route::patch('/{id}/lock', 'lock');
+            Route::patch('/{id}/unlock', 'unlock');
+        });
+    });
 });
 
 Route::middleware('guest')->group(function () {
@@ -76,7 +77,7 @@ Route::get('/authentication/{id}/print', [AuthenticationController::class, 'prin
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 Route::get('/dashboard', function () {
     $sql =
-       "SELECT
+        "SELECT
             DISTINCT(`u`.`branch`) AS `branch`,
             COUNT(`csn`.`series_number`) AS `count`
             FROM `coc_series_numbers` `csn`
@@ -94,6 +95,3 @@ Route::get('/logs', function () {
 
     return view('logs');
 })->middleware('auth');
-
-
-

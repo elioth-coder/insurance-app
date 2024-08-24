@@ -3,7 +3,6 @@ $path = request()->path();
 $segments = explode('/', $path);
 $segment_0 = $segments[0] ?? "";
 $segment_1 = $segments[1] ?? "";
-
 @endphp
 
 <div id="authentication" role="tabpanel" aria-labelled-by="authentication-tab"

@@ -1,4 +1,4 @@
-@props(['name','type','label','placeholder','required'=>false,'disabled'=>false,'value'=>''])
+@props(['name','type','label','placeholder','required'=>false,'disabled'=>false,'value'=>'', 'maxlength'=>255])
 
 @php
     $errorClass = $errors->has($name) ? 'border-red-500' : '';
@@ -14,6 +14,7 @@
         :$required
         :$disabled
         :$value
+        :$maxlength
     />
     @error($name)
         <x-forms.error>{{ $message }}</x-forms.error>

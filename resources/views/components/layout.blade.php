@@ -1,5 +1,4 @@
 @props([
-    'script' => '',
     'breadcrumbs' => [],
     'sidebar' => true,
 ])
@@ -18,7 +17,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/css/data-table.css', 'resources/js/app.js'])
+    {{ $head ?? '' }}
     <style>
     html, body {
         overflow: hidden;
@@ -46,6 +47,6 @@
             </div>
         </main>
     </div>
-    {{ $script }}
+    {{ $script ?? '' }}
 </body>
 </html>

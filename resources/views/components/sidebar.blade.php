@@ -47,24 +47,26 @@ $segment_0 = $segments[0] ?? "";
                 <p class="text-center text-xs font-bold">Authentication</p>
             </button>
         </li>
-        <li role="presentation">
-            <button
-                id="series-tab"
-                data-tabs-target="#series"
-                type="button"
-                role="tab"
-                aria-controls="series"
-                aria-selected="{{ ($segment_0=='series') ? 'true' : 'false' }}"
-                class="{{ ($segment_0=='series') ? $activeClasses : '' }} group w-full py-3 text-gray-900 hover:bg-violet-200 text-center items-center justify-center">
-                <i class="font-medium inline-flex">
-                    <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
-                        <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
-                    </svg>
-                </i>
-                <p class="text-center text-xs font-bold">Series</p>
-            </button>
-        </li>
+        @if(Auth::user()->role != 'subagent')
+            <li role="presentation">
+                <button
+                    id="series-tab"
+                    data-tabs-target="#series"
+                    type="button"
+                    role="tab"
+                    aria-controls="series"
+                    aria-selected="{{ ($segment_0=='series') ? 'true' : 'false' }}"
+                    class="{{ ($segment_0=='series') ? $activeClasses : '' }} group w-full py-3 text-gray-900 hover:bg-violet-200 text-center items-center justify-center">
+                    <i class="font-medium inline-flex">
+                        <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
+                        </svg>
+                    </i>
+                    <p class="text-center text-xs font-bold">Series</p>
+                </button>
+            </li>
+        @endif
         <li role="presentation">
             <button
                 id="reports-tab"
@@ -81,23 +83,25 @@ $segment_0 = $segments[0] ?? "";
                 <p class="text-center text-xs font-bold">Reports</p>
             </button>
         </li>
-        <li role="presentation">
-            <button
-                id="users-tab"
-                type="button"
-                role="tab"
-                data-tabs-target="#users"
-                aria-controls="users"
-                aria-selected="{{ ($segment_0=='agents') ? 'true' : 'false' }}"
-                class="{{ ($segment_0=='agents') ? $activeClasses : '' }} group w-full py-3 text-gray-900 hover:bg-violet-200 text-center items-center justify-center">
-                <i class="font-medium inline-flex">
-                    <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
-                    </svg>
-                </i>
-                <p class="text-center text-xs font-bold">Users</p>
-            </button>
-        </li>
+        @if(Auth::user()->role != 'subagent')
+            <li role="presentation">
+                <button
+                    id="users-tab"
+                    type="button"
+                    role="tab"
+                    data-tabs-target="#users"
+                    aria-controls="users"
+                    aria-selected="{{ ($segment_0=='agents') ? 'true' : 'false' }}"
+                    class="{{ ($segment_0=='agents') ? $activeClasses : '' }} group w-full py-3 text-gray-900 hover:bg-violet-200 text-center items-center justify-center">
+                    <i class="font-medium inline-flex">
+                        <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
+                        </svg>
+                    </i>
+                    <p class="text-center text-xs font-bold">Users</p>
+                </button>
+            </li>
+        @endif
         <li role="presentation">
             <button
                 id="interagency-tab"
@@ -119,96 +123,11 @@ $segment_0 = $segments[0] ?? "";
     <section class="w-full text-sm" id="default-tab-content">
         <x-sidebar-dashboard />
         <x-sidebar-authentication />
-        <div id="series" role="tabpanel" aria-labelled-by="series-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <h2 class="text-2xl font-black px-5">Series Management</h2>
-            <ul class="space-y-1 font-medium">
-                <li role="presentation">
-                    <a href="/series/create"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('series/create')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">Assign / Allocate</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/series"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('series') || request()->tab=='assigned_series') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">Assigned Series Table</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div id="reports" role="tabpanel" aria-labelled-by="reports-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <h2 class="text-2xl font-black px-5">Reports</h2>
-            <hr>
-            <ul class="space-y-1 font-medium">
-                <li role="presentation">
-                    <a href="/reports/create"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Reports Generator</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/reports" onclick="(e) => { e.preventDefault(); document.querySelector(`#quick-search`).focus(); }"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group">
-                        <span class="">Pre-Generated</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div id="users" role="tabpanel" aria-labelled-by="users-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <h2 class="text-2xl font-black px-5">Users Management</h2>
-            <hr>
-            <ul class="space-y-1 font-medium">
-                <li role="presentation">
-                    <a href="/agents/create"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->is('agents/create')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">
-                            New {{ (Auth::user()->role=='agent') ? 'Subagent' : 'Agent'}}
-                        </span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/agents"
-                        class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white hover:bg-violet-200 dark:hover:bg-gray-700 group {{ (request()->is('agents')) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <span class="">
-                            {{ (Auth::user()->role=='agent') ? 'Subagent' : 'Agent'}}s Table
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div id="interagency" role="tabpanel" aria-labelled-by="interagency-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <h2 class="text-2xl font-black px-5">Interagency</h2>
-            <hr>
-            <ul class="space-y-1 font-medium">
-                <li role="presentation">
-                    <a href="/interagency/hpg/?tab=hpg"
-                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='hpg') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <img src="{{ asset('images/hpg-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
-                        <span class="">Highway Patrol Group (HPG)</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/interagency/hpg/?tab=hpg"
-                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='lto') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <img src="{{ asset('images/lto-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
-                        <span class="">Land Transportation Office (LTO)</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/interagency/hpg/?tab=hpg"
-                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='boc') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <img src="{{ asset('images/boc-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
-                        <span class="">Bureau of Customs (BOC)</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/interagency/hpg/?tab=hpg"
-                        class="relative flex items-center px-5 py-5 pl-12  text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (request()->tab=='ltfrb') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                        <img src="{{ asset('images/ltfrb-logo.png') }}" class="border w-7 h-7 rounded-full block absolute top-0 left-0 ml-3 mt-4" />
-                        <span class="">Land Transportation and Franchising Regulatory Board (LTFRB)</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        @if(Auth::user()->role != 'subagent')
+            <x-sidebar-series />
+            <x-sidebar-users />
+        @endif
+        <x-sidebar-reports />
+        <x-sidebar-interagency />
     </section>
 </div>

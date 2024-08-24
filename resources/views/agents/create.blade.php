@@ -63,6 +63,7 @@
                         name="mobile_number"
                         type="text"
                         label="Mobile no."
+                        maxlength="11"
                         placeholder="Enter mobile no."
                     />
                 </div>
