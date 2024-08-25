@@ -5,8 +5,17 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\InteragencyController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('search')->group(function () {
+        Route::controller(SearchController::class)->group(function () {
+            Route::get('/', 'index');
+        });
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::prefix('interagency')->group(function () {

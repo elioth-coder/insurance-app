@@ -24,8 +24,11 @@
             <x-card class="max-w-xl">
                 <x-card-header>Assign Series</x-card-header>
                 <x-forms.form method="POST" action="/series">
-                    <x-forms.select-field class="w-full" name="agent_id" label="Subagent"
-                        placeholder="-- Select subagent --" required>
+                    @php
+                        $label = (Auth::user()->role=='agent') ? 'Subagent' : 'Agent';
+                    @endphp
+                    <x-forms.select-field class="w-full" name="agent_id" label="{{ $label }}"
+                        placeholder="-- Select {{ strtolower($label) }} --" required>
                         @foreach ($agents as $agent)
                             <option value="{{ $agent->id }}"
                                 {{ old('agent_id') == $agent->id ? 'selected' : '' }}>

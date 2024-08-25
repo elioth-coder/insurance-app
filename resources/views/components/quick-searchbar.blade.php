@@ -1,6 +1,8 @@
-<form class="max-w-lg mx-auto">
+<form class="max-w-lg mx-auto" action="/search" method="GET">
     <div class="flex">
         <input type="search" id="search-dropdown"
+            name="query"
+            value="{{ request()->input('query') ?? '' }}"
             class="block p-2.5 w-full z-20 text-gray-900 bg-gray-50 rounded-s-lg border-e-gray-50 border-e-2 border border-gray-300 focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-violet-500"
             placeholder="Enter MV details" required />
         <div class="relative w-auto flex">
@@ -19,6 +21,11 @@
                     <li>
                         <button type="button"
                             class="inline-flex w-32 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">COC
+                            number</button>
+                    </li>
+                    <li>
+                        <button type="button"
+                            class="inline-flex w-32 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">MV File
                             number</button>
                     </li>
                     <li>

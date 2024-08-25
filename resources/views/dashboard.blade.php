@@ -1,10 +1,10 @@
 <x-layout>
-    <h2 id="uploads" class="pt-2 text-xl mx-1 mt-5 mb-2">Total Uploads</h2>
+    <h2 id="uploads" class="pt-2 text-xl mx-1 mt-5 mb-2">Today's Uploads</h2>
     <section class="flex space-x-5">
         @foreach ($uploads as $upload)
             <div class="border bg-white text-violet-800 px-12 py-3 rounded-lg flex flex-col items-center justify-between w-auto">
                 <h1 class="text-center text-7xl">{{ $upload->count }}</h1>
-                <h2 class="text-center text-xl text-black">{{ $upload->branch }}</h2>
+                <h2 class="text-center text-lg text-black font-thin">{{ $upload->branch }}</h2>
             </div>
         @endforeach
     </section>
@@ -140,7 +140,7 @@
             </div>
         </div>
         <div class="min-w-[350px]">
-            <h3 id="quick_search" class="pt-1 text-xl mb-2">Quick Search (COC/Plate No.)</h3>
+            <h3 id="quick_search" class="pt-1 text-xl mb-2">Quick Search ([COC/Plate/MV File] No.)</h3>
             <x-quick-searchbar />
             <section class="pl-6 mb-5">
                 <h2 class="my-2 mt-3 text-gray-500 font-semibold text-sm">What is Quick Search for?</h2>

@@ -73,6 +73,7 @@
                     placeholder="Enter assured address" required />
                 <div class="flex space-x-2">
                     <x-forms.input-field class="w-full" name="contact_number" type="text" label="Contact No."
+                        maxlength="11"
                         placeholder="Enter contact no." />
                     <x-forms.input-field class="w-full" name="email_address" type="email" label="Email Address"
                         placeholder="Enter email address" />
@@ -113,8 +114,14 @@
                 </x-forms.select-field>
                 <div class="flex space-x-2">
                     <x-forms.input-field class="w-full" name="inception_date" type="date"
+                        value="{{ date('Y-m-d') }}"
                         label="Inception Date From" placeholder="00-00-0000" required />
+                    @php
+                        $year = date('Y') + 1;
+                        $expiry_date = $year . date('-m-d');
+                    @endphp
                     <x-forms.input-field class="w-full" name="expiry_date" type="date" label="Expiry Date To"
+                        value="{{ $expiry_date }}"
                         placeholder="00-00-0000" required />
                 </div>
                 <hr class="my-1">
