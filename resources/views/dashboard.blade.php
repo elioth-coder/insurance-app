@@ -1,13 +1,15 @@
 <x-layout>
-    <h2 id="uploads" class="pt-2 text-xl mx-1 mt-5 mb-2">Today's Uploads</h2>
-    <section class="flex space-x-5">
-        @foreach ($uploads as $upload)
-            <div class="border bg-white text-violet-800 px-12 py-3 rounded-lg flex flex-col items-center justify-between w-auto">
-                <h1 class="text-center text-7xl">{{ $upload->count }}</h1>
-                <h2 class="text-center text-lg text-black font-thin">{{ $upload->branch }}</h2>
-            </div>
-        @endforeach
-    </section>
+    @if (Auth::user()->role !== 'subagent')
+        <h2 id="uploads" class="pt-2 text-xl mx-1 mt-5 mb-2">Today's Uploads</h2>
+        <section class="flex space-x-5">
+            @foreach ($uploads as $upload)
+                <div class="min-w-[175px] border bg-white text-violet-800 py-3 rounded-lg flex flex-col items-center justify-between w-auto">
+                    <h1 class="text-center text-7xl">{{ $upload->count }}</h1>
+                    <h2 class="mt-1 text-center text-lg text-black font-thin">{{ $upload->branch }}</h2>
+                </div>
+            @endforeach
+        </section>
+    @endif
 
     <h2 id="introduction" class="pt-2 text-xl mx-1 mt-5 mb-2">Introduction</h2>
     <section class="border bg-white p-8 rounded-lg">
@@ -78,7 +80,7 @@
                     </button>
                 </div>
             </div>
-            <div id="alert-additional-content-1"
+            <div id="alert-additional-content-11"
                 class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-white dark:text-blue-400 dark:border-blue-800"
                 role="alert">
                 <div class="flex flex-col">
@@ -104,7 +106,7 @@
                     </button>
                     <button type="button"
                         class="text-blue-800 bg-transparent border border-blue-800 hover:bg-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800"
-                        data-dismiss-target="#alert-additional-content-1" aria-label="Close">
+                        data-dismiss-target="#alert-additional-content-11" aria-label="Close">
                         Dismiss
                     </button>
                 </div>
@@ -140,7 +142,7 @@
             </div>
         </div>
         <div class="min-w-[350px]">
-            <h3 id="quick_search" class="pt-1 text-xl mb-2">Quick Search ([COC/Plate/MV File] No.)</h3>
+            <h3 id="quick_search" class="pt-1 text-xl mb-2">Quick Search (COC,Plate,MV File No.)</h3>
             <x-quick-searchbar />
             <section class="pl-6 mb-5">
                 <h2 class="my-2 mt-3 text-gray-500 font-semibold text-sm">What is Quick Search for?</h2>

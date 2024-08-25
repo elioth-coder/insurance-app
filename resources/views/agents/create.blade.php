@@ -90,7 +90,14 @@
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </x-forms.select-field>
-                    <div class="w-full"></div>
+                    <x-forms.input-field
+                        class="w-full"
+                        name="upload_rate"
+                        type="text"
+                        label="Upload Rate"
+                        maxlength="6"
+                        placeholder="Enter upload rate"
+                    />
                 </div>
                 <hr class="my-1">
                 <div class="flex space-x-2 justify-end">

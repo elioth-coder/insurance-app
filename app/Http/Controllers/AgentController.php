@@ -72,6 +72,7 @@ class AgentController extends Controller
             'status' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(6)],
+            'upload_rate' => ['required', 'numeric', 'min:0'],
         ]);
 
         if (Auth::user()->role == 'agent') {
@@ -105,6 +106,7 @@ class AgentController extends Controller
             'branch' => ['required'],
             'status' => ['required'],
             'password' => ['required', 'confirmed', Password::min(6)],
+            'upload_rate' => ['required', 'numeric', 'min:0'],
         ]);
 
         $user->update($userAttributes);

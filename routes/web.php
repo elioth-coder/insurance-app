@@ -5,14 +5,27 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\InteragencyController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 Route::middleware('auth')->group(function () {
     Route::prefix('search')->group(function () {
         Route::controller(SearchController::class)->group(function () {
             Route::get('/', 'index');
+        });
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('reports')->group(function () {
+        Route::controller(ReportsController::class)->group(function () {
+            Route::get('/agents', 'agents');
+            Route::get('/agents/print', 'print_agents');
+            Route::get('/authentications', 'authentications');
+            Route::get('/authentications/print', 'print_authentications');
         });
     });
 });
@@ -85,7 +98,8 @@ Route::get('/authentication/{id}/print', [AuthenticationController::class, 'prin
 
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 Route::get('/dashboard', function () {
-    $sql =
+    if(Auth::user()->role == 'admin') {
+        $sql =
         "SELECT
             DISTINCT(`u`.`branch`) AS `branch`,
             COUNT(`csn`.`series_number`) AS `count`
@@ -93,6 +107,17 @@ Route::get('/dashboard', function () {
         INNER JOIN `users` `u` ON `csn`.`agent_id`=`u`.`id`
             WHERE `csn`.`status`='used'
         GROUP BY `u`.`branch`";
+    } else {
+        $sql =
+        "SELECT
+            DISTINCT(`u`.`branch`) AS `branch`,
+            COUNT(`auth`.`id`) AS `count`
+            FROM `authentications` `auth`
+        INNER JOIN `users` `u` ON `auth`.`agent_id`=`u`.`id`
+            WHERE `auth`.`agent_id` IN
+            (SELECT `subagent_id` FROM `subagents` WHERE `agent_id`=".Auth::user()->id.")
+        GROUP BY `u`.`branch`";
+    }
 
     $uploads = DB::select($sql);
 
@@ -100,7 +125,7 @@ Route::get('/dashboard', function () {
         'uploads' => $uploads,
     ]);
 })->middleware('auth');
-Route::get('/logs', function () {
 
+Route::get('/logs', function () {
     return view('logs');
 })->middleware('auth');

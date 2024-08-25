@@ -13,7 +13,10 @@
     class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
         <div class="truncate">{{ Auth::user()->email }}</div>
-        <div class="font-medium ">Privilege: {{ strtolower(Auth::user()->role) }}</div>
+        <div class="font-medium">
+            [{{ Auth::user()->branch }}] -
+            <span class="capitalize">{{ strtolower(Auth::user()->role) }}</span>
+        </div>
     </div>
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
         aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">

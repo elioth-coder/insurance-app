@@ -102,7 +102,15 @@
                         <option value="active" {{ ($agent->status=='active') ? 'selected' : ''}}>Active</option>
                         <option value="inactive" {{ ($agent->status=='inactive') ? 'selected' : ''}}>Inactive</option>
                     </x-forms.select-field>
-                    <div class="w-full"></div>
+                    <x-forms.input-field
+                        class="w-full"
+                        name="upload_rate"
+                        type="text"
+                        label="Upload Rate"
+                        maxlength="6"
+                        placeholder="Enter upload rate"
+                        value="{{ $agent->upload_rate ?? '' }}"
+                    />
                 </div>
                 <div class="flex space-x-2 justify-end">
                     <span class="inline-block w-32">

@@ -23,7 +23,12 @@ class SeriesController extends Controller
                 ->get();
 
             $agents = collect($agents)->map(function (Object $agent) {
-                $agent->series_count = 0;
+                $count =
+                    DB::table('coc_series_numbers')
+                        ->where('subagent_id', $agent->id)
+                        ->where('status', 'assigned')
+                        ->count();
+                $agent->series_count = $count;
                 return $agent;
             });
 

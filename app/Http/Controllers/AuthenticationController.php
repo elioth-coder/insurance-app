@@ -42,7 +42,9 @@ class AuthenticationController extends Controller
 
     public function index()
     {
-        $authentications = Authentication::all();
+        $authentications =
+            Authentication::where('agent_id', Auth::user()->id)
+                ->get();
 
         return view('authentication.index', [
             'authentications' => $authentications,
@@ -72,6 +74,8 @@ class AuthenticationController extends Controller
 
     public function store(Request $request)
     {
+        $agent = Auth::user();
+
         $authenticationAttributes = $request->validate([
             'type' => ['required'],
             'plate_number' => ['string'],
@@ -92,6 +96,8 @@ class AuthenticationController extends Controller
             'expiry_date' => ['required', 'date'],
         ]);
 
+        $authenticationAttributes['upload_rate'] = $agent->upload_rate;
+        $authenticationAttributes['agent_id'] = $agent->id;
         $coc_number = $authenticationAttributes['coc_number'];
         $authentication = Authentication::create($authenticationAttributes);
         CocSeriesNumber::where('series_number', $coc_number)
