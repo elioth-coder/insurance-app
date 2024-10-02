@@ -6,9 +6,9 @@
     <hr>
     <ul class="space-y-1 font-medium">
         <li role="presentation">
-            <a href="/dashboard/?tab=introduction#introduction"
-                class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ request()->tab == 'introduction' ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
-                <span class="">Introduction</span>
+            <a href="/dashboard"
+                class="flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group {{ (!request()->tab) ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }}">
+                <span class="">Home</span>
             </a>
         </li>
         <li role="presentation">

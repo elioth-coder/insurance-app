@@ -36,7 +36,7 @@
         <p class="text-xs my-1">East Avenue, Quezon City</p>
     </header>
     <main class="relative flex flex-col">
-        <x-reports.authentications-table :$authentications />
+        <x-reports.authentication-taxes-table :$authentications />
     </main>
 </body>
 <script>

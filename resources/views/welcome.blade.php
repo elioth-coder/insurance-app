@@ -61,7 +61,7 @@
     </div>
 
     <footer class="bg-violet-800 border-t border-violet-600 text-white py-5">
-        <p class="text-center font-thin">&copy; 2024 iVeIM System | v1.0.0</p>
+        <p class="text-center font-thin">Copyright &copy; 2024 iVeIM System | v1.0.0</p>
     </footer>
 </body>
 

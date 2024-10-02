@@ -60,15 +60,19 @@
                     required
                 />
                 <div class="flex space-x-2">
-                    <x-forms.input-field
+                    <x-forms.select-field
                         class="w-full"
-                        name="branch"
-                        type="text"
-                        label="Branch"
-                        placeholder="Enter branch"
-                        value="{{ $agent->branch ?? '' }}"
-                        required
-                    />
+                        name="branch_id"
+                        label="Company/Branch"
+                        placeholder="Select company/branch"
+                        required>
+                        @foreach($branches as $branch)
+                            <option value="{{ $branch->id }}">
+                                {{ $branch->name }} -
+                                {{ $branch->address }}
+                            </option>
+                        @endforeach
+                    </x-forms.select-field>
                     <x-forms.input-field
                         class="w-full"
                         name="mobile_number"
@@ -102,15 +106,7 @@
                         <option value="active" {{ ($agent->status=='active') ? 'selected' : ''}}>Active</option>
                         <option value="inactive" {{ ($agent->status=='inactive') ? 'selected' : ''}}>Inactive</option>
                     </x-forms.select-field>
-                    <x-forms.input-field
-                        class="w-full"
-                        name="upload_rate"
-                        type="text"
-                        label="Upload Rate"
-                        maxlength="6"
-                        placeholder="Enter upload rate"
-                        value="{{ $agent->upload_rate ?? '' }}"
-                    />
+                    <div class="w-full"></div>
                 </div>
                 <div class="flex space-x-2 justify-end">
                     <span class="inline-block w-32">

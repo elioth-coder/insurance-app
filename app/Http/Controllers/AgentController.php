@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,15 +52,21 @@ class AgentController extends Controller
     public function edit($id)
     {
         $agent = User::find($id);
+        $branches = Branch::where('agent_id', Auth::user()->id)->get();
 
         return view('agents.edit', [
-            'agent' => $agent
+            'agent' => $agent,
+            'branches' => $branches,
         ]);
     }
 
     public function create()
     {
-        return view('agents.create');
+        $branches = Branch::where('agent_id', Auth::user()->id)->get();
+
+        return view('agents.create', [
+            'branches' => $branches,
+        ]);
     }
 
     public function store(Request $request)
@@ -68,11 +75,10 @@ class AgentController extends Controller
             'first_name' => ['required'],
             'last_name' => ['required'],
             'mobile_number' => ['required', 'min:11', 'max:11'],
-            'branch' => ['required'],
+            'branch_id' => ['required'],
             'status' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(6)],
-            'upload_rate' => ['required', 'numeric', 'min:0'],
         ]);
 
         if (Auth::user()->role == 'agent') {
@@ -91,6 +97,11 @@ class AgentController extends Controller
             $userAttributes['role'] = 'agent';
             $user = User::create($userAttributes);
 
+            DB::table('subagents')->insert([
+                'agent_id' => Auth::user()->id,
+                'subagent_id' => $user->id,
+            ]);
+
             return redirect('/agents/create')->with([
                 'message' => "Successfully registered $user->first_name $user->last_name as an agent."
             ]);
@@ -103,10 +114,9 @@ class AgentController extends Controller
 
         $userAttributes = $request->validate([
             'mobile_number' => ['required', 'min:11', 'max:11'],
-            'branch' => ['required'],
+            'branch_id' => ['required'],
             'status' => ['required'],
             'password' => ['required', 'confirmed', Password::min(6)],
-            'upload_rate' => ['required', 'numeric', 'min:0'],
         ]);
 
         $user->update($userAttributes);

@@ -17,7 +17,7 @@
             <h2 class="pt-2 text-xl mx-1 mb-2">Search results for - "{{ request()->get('query') }}"</h2>
             <div class="relative overflow-x-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
                 @if (!empty($authentication))
-                    <x-authenticated-table :$authentication :$series_number />
+                    <x-authenticated-table :$authentication :$settings :$vehicle_type />
                     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                     <section class="inline-flex justify-end w-full mt-3">
                         <a href="/authentication/{{ $authentication->id }}/print"

@@ -13,11 +13,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $guarded = ['id','created_at','updated_at'];
 
     /**
@@ -43,13 +38,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function series_numbers(): HasMany
+    public function branch()
     {
-        return $this->hasMany(CocSeriesNumber::class);
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
-    public function subagents(): HasMany
+    public function authentication()
     {
-        return $this->hasMany(Subagent::class);
+        return $this->hasOne(Authentication::class, 'agent_id');
     }
 }

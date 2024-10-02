@@ -14,7 +14,7 @@
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
         <div class="truncate">{{ Auth::user()->email }}</div>
         <div class="font-medium">
-            [{{ Auth::user()->branch }}] -
+            [{{ Auth::user()->branch_id }}] -
             <span class="capitalize">{{ strtolower(Auth::user()->role) }}</span>
         </div>
     </div>

@@ -20,11 +20,10 @@
         <div class="flex">
             <div class="relative overflow-x-auto shadow-md w-full">
                 <table id="assured_vehicles-table"
-                    class="bg-white w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    class="bg-white w-full text-sm text-left rtl:text-right">
+                    <thead class="text-xs uppercase bg-gray-50">
                         <tr>
-                            <th class="px-6 py-4">Type</th>
-                            <th class="px-6 py-4">COC No.</th>
+                            <th class="px-6 py-4">COC Serial No.</th>
                             <th class="px-6 py-4">Plate No.</th>
                             <th class="px-6 py-4">MV File No.</th>
                             <th class="px-6 py-4">Assured Name</th>
@@ -35,7 +34,6 @@
                     <tbody>
                         @forelse ($authentications as $authentication)
                             <tr class="group cursor-pointer">
-                                <td class="group-hover:bg-violet-200 px-8 py-6 capitalize">{{ $authentication->type }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->coc_number }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->plate_number ?? '--' }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $authentication->mv_file_number ?? '--' }}</td>

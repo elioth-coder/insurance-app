@@ -1,4 +1,4 @@
-<div id="users" role="tabpanel" aria-labelled-by="users-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+<div id="agents" role="tabpanel" aria-labelled-by="agents-tab" class="h-full space-y-6 px-6 py-8 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <h2 class="text-2xl font-black px-5">Users Management</h2>
     <hr>
     <ul class="space-y-1 font-medium">

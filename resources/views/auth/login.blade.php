@@ -1,7 +1,11 @@
 <x-layout :sidebar="false">
     <section class="w-full py-8">
-        <div class="flex flex-col items-center justify-center px-6 mx-auto">
-            <x-card class="sm:max-w-md">
+        <div class="flex items-center justify-evenly px-6 mx-auto">
+            <div class="max-w-md">
+                <img class="w-[300px] block rounded-full" src="{{ asset('images/ic-logo.png')}}" alt="Insurance Commission">
+                <h2 class="text-center text-2xl font-bold mt-3">Insurance Commision</h2>
+            </div>
+            <x-card class="max-w-md">
                 <x-card-header>Sign in to your account</x-card-header>
                 @error('credential')
                     <x-alert color="red" id="credential_error">

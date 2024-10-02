@@ -6,7 +6,7 @@
         ],
         [
             'url' => '#',
-            'title' => 'Authentications',
+            'title' => 'Authentication Fees',
         ],
     ];
 @endphp
@@ -27,10 +27,10 @@
                 </div>
             </form>
             <div class="relative overflow-x-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-                <x-reports.authentications-table :$authentications />
+                <x-reports.authentication-fees-table :$authentications />
             </div>
             <section class="inline-flex w-full py-5">
-                <a href="/reports/authentications/print" target="_blank"
+                <a href="/reports/authentication_fees/print" target="_blank"
                     class="text-white bg-violet-700 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Print
                     <svg class="w-6 h-6 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"

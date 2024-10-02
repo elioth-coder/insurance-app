@@ -50,14 +50,19 @@
                     required
                 />
                 <div class="flex space-x-2">
-                    <x-forms.input-field
+                    <x-forms.select-field
                         class="w-full"
-                        name="branch"
-                        type="text"
+                        name="branch_id"
                         label="Company/Branch"
-                        placeholder="Enter company/branch"
-                        required
-                    />
+                        placeholder="Select company/branch"
+                        required>
+                        @foreach($branches as $branch)
+                            <option value="{{ $branch->id }}">
+                                {{ $branch->name }} -
+                                {{ $branch->address }}
+                            </option>
+                        @endforeach
+                    </x-forms.select-field>
                     <x-forms.input-field
                         class="w-full"
                         name="mobile_number"
@@ -90,14 +95,7 @@
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </x-forms.select-field>
-                    <x-forms.input-field
-                        class="w-full"
-                        name="upload_rate"
-                        type="text"
-                        label="Upload Rate"
-                        maxlength="6"
-                        placeholder="Enter upload rate"
-                    />
+                    <div class="w-full"></div>
                 </div>
                 <hr class="my-1">
                 <div class="flex space-x-2 justify-end">

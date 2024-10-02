@@ -1,75 +1,3 @@
-@php
-    $serverIp = gethostbyname(gethostname());
-
-    $mv_types = [
-        'C' => 'Car',
-        'HB' => 'Shuttle Bus',
-        'LE' => 'Light Electric Vehicle',
-        'M' => 'Motorcycle without Sidecar',
-        'MO' => 'Moped (0-49 cc)',
-        'MS' => 'Motorcycle with Sidecar',
-        'NC' => 'Non-Conventional MC (Car)',
-        'NV' => 'Non-Conventional MV (UV)',
-        'OB' => 'Tourist Bus',
-        'SB' => 'School Bus',
-        'SV' => 'Sports Utility Vehicle',
-        'TB' => 'Truck Bus',
-        'TC' => 'Tricycle',
-        'TK' => 'Truck',
-        'TL' => 'Trailer',
-        'UV' => 'Utility Vehicle',
-    ];
-    $premiums = [
-        [],
-        [
-            'description' => 'Private Cars (including jeeps and AUVs)',
-            'duration' => '1 -Year(s)',
-            'amount' => '560.00',
-        ],
-        [
-            'description' => 'Light Medium Trucks (Own Goods) Not over 3,930 kgs.',
-            'duration' => '1 -Year(s)',
-            'amount' => '610.00',
-        ],
-        [
-            'description' => 'Heavy Trucks (Own Good), Private Buses over 3,930 kgs.',
-            'duration' => '1 -Year(s)',
-            'amount' => '1,200.00',
-        ],
-        ['description' => 'AC and Tourists Cars', 'duration' => '1 -Year(s)', 'amount' => '740.00'],
-        ['description' => 'Taxi, PUJ and Mini bus', 'duration' => '1 -Year(s)', 'amount' => '1,100.00'],
-        ['description' => 'PUB and Tourists Bus', 'duration' => '1 -Year(s)', 'amount' => '1,450.00'],
-        [
-            'description' => 'Motorcycles/Tricycles/Trailers',
-            'duration' => '1 -Year(s)',
-            'amount' => '250.00',
-        ],
-        [
-            'description' => 'Private Cars (including jeeps and AUVs)',
-            'duration' => '3 -Year(s)',
-            'amount' => '1,610.00',
-        ],
-        [
-            'description' => 'Light Medium Trucks (Own Goods) Not over 3,930 kgs.',
-            'duration' => '3 -Year(s)',
-            'amount' => '1,750.00',
-        ],
-        [
-            'description' => 'Heavy Trucks (Own Good), Private Buses over 3,930 kgs.',
-            'duration' => '3 -Year(s)',
-            'amount' => '3,440.00',
-        ],
-        ['description' => 'AC and Tourists Cars', 'duration' => '3 -Year(s)', 'amount' => '2,120.00'],
-        ['description' => 'Taxi, PUJ and Mini bus', 'duration' => '3 -Year(s)', 'amount' => '3,150.00'],
-        ['description' => 'PUB and Tourists Bus', 'duration' => '3 -Year(s)', 'amount' => '4,150.00'],
-        [
-            'description' => 'Motorcycles/Tricycles/Trailers',
-            'duration' => '3 -Year(s)',
-            'amount' => '720.00',
-        ],
-    ];
-@endphp
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -109,30 +37,30 @@
         <h1 class="text-2xl text-center font-bold text-green-500">VERIFIED CERTIFICATE OF COVERAGE</h1>
     </header>
     <main class="relative flex flex-col">
-        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full max-w-md">
             <p class="">Official Receipt Number</p>
             <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
         </div>
-        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full max-w-md">
             <p class="">COC Number</p>
-            <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
+            <p class="text-xl font-bold">{{ $authentication->coc_number }}</p>
         </div>
-        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full max-w-md">
             <p class="">Policy Number</p>
-            <p class="text-xl font-bold">{{ $authentication->or_number }}</p>
+            <p class="text-xl font-bold">{{ $authentication->policy_number }}</p>
         </div>
-        <div colspan="2" class="p-2 border my-2 mx-auto w-full">
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full max-w-md">
             <p class="">Plate Number</p>
             <p class="text-xl font-bold">{{ $authentication->plate_number ?? '--' }}</p>
         </div>
-        <div colspan="2" class="p-2 border my-2 mx-auto w-full mt-5">
+        <div colspan="2" class="p-2 border my-2 mx-auto w-full max-w-md mt-5">
             <p class="">MV File Number</p>
             <p class="text-xl font-bold">{{ $authentication->mv_file_number ?? '--' }}</p>
         </div>
         <section class="block box-border border-2 border-black w-fit mx-auto"
             style="width: 210px; min-width: 210px; height: 210px; min-height: 210px; padding: 5px;">
             {!! QrCode::size(200)->generate(
-                "http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view",
+                $authentication->coc_number,
             ) !!}
         </section>
     <footer class="text-center py-5">

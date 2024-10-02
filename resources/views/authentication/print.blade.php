@@ -1,6 +1,3 @@
-@php
-    $serverIp = gethostbyname(gethostname());
-@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -24,6 +21,8 @@
         body {
             margin: 0.5in 1in;
         }
+
+        /* @media print{@page {size: landscape}} */
     </style>
 </head>
 
@@ -35,22 +34,23 @@
         <p>DEPARTMENT OF INSURANCE COMMISION</p>
         <h3 class="text-xl font-bold">INSURANCE COMMISSION OFFICE</h3>
         <p class="text-xs my-1">East Avenue, Quezon City</p>
-        <h2 class="text-2xl font-bold my-2">CONFIRMATION OF COVER</h2>
+        <h2 class="text-2xl font-bold my-3">CONFIRMATION OF COVER</h2>
     </header>
     <main class="relative flex flex-col">
-        <x-authenticated-table :$authentication :$series_number />
-        <div class="flex mt-4 space-x-5">
-            <section class="block">
+        <x-authenticated-table :$authentication :$settings :$vehicle_type />
+        <div class="flex space-x-5 mt-5">
+            <section class="block p-1 pb-0">
+                <h3 class="text-center font-bold text-xl my-2">LIABILITY LIMIT: P{{ number_format($settings['LIABILITY_LIMIT'],2) }}</h3>
                 <p class="text-xs text-justify" style="text-indent: 30px;">This Confirmation of Cover is evidence of the policy of insurance required under Chapter VI - Compulsory Motor Vehicle Insurance of the Insurance Code, as amended by Presidential Decreee No. 1814</p>
-                <div class="mt-10 mx-auto text-center" style="width: 300px;">
+                <div class="mt-8 mx-auto text-center" style="width: 300px;">
                     <p>_____________________________</p>
-                    <p>Authorized Signature</p>
+                    <p class="text-xs">Authorized Signature</p>
                 </div>
             </section>
             <section
                 class="block box-border border-2 border-black"
                 style="min-width: 160px; min-height: 160px; padding: 5px;">
-                {!! QrCode::size(150)->generate("http://$serverIp:" . env('SERVER_PORT') . "/authentication/$authentication->id/view") !!}
+                {!! QrCode::size(150)->generate($authentication->coc_number) !!}
             </section>
         </div>
         <img class="absolute" style="top: calc(50% - 150px); left: calc(50% - 150px); height: 300px; opacity: 0.3;"

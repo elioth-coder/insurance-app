@@ -1,8 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Authentication;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -12,37 +10,46 @@ class ReportsController extends Controller
 {
     private function getAuthentications()
     {
-        $subagents = DB::table('subagents')->select('subagent_id')->where('agent_id', Auth::user()->id);
-        $agents = User::whereIn('id', $subagents)->get();
-        $authentications =
-            Authentication::whereIn('agent_id', $subagents)
+        $authentications = Authentication::select('authentications.*', 'branches.name as branch')
+            ->join('users', 'authentications.agent_id', '=', 'users.id')
+            ->join('branches', 'branches.id', '=', 'users.branch_id')
             ->get();
-
-        $authentications = $authentications->map(function (Object $authentication) use ($agents) {
-            $authentication->agent = $agents->filter(function (Object $agent, int $key) use ($authentication) {
-                return $agent->id == $authentication->agent_id;
-            })->first();
-
-            return $authentication;
-        });
 
         return $authentications;
     }
 
-    public function authentications()
+    public function authentication_fees()
     {
         $authentications = $this->getAuthentications();
 
-        return view('reports.authentications', [
+        return view('reports.authentication-fees', [
             'authentications' => $authentications,
         ]);
     }
 
-    public function print_authentications()
+    public function print_authentication_fees()
     {
         $authentications = $this->getAuthentications();
 
-        return view('reports.print-authentications', [
+        return view('reports.print-authentication-fees', [
+            'authentications' => $authentications,
+        ]);
+    }
+
+    public function authentication_taxes()
+    {
+        $authentications = $this->getAuthentications();
+
+        return view('reports.authentication-taxes', [
+            'authentications' => $authentications,
+        ]);
+    }
+
+    public function print_authentication_taxes()
+    {
+        $authentications = $this->getAuthentications();
+
+        return view('reports.print-authentication-taxes', [
             'authentications' => $authentications,
         ]);
     }

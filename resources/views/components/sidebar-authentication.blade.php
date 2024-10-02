@@ -11,15 +11,27 @@ $segment_1 = $segments[1] ?? "";
     <hr>
     <ul class="space-y-1 font-medium">
         <li role="presentation">
+            <a href="/authentication/verify"
+                class="{{ ($segment_0=='authentication' && $segment_1=='verify') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }} flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group">
+                <span class="">Verify Authentication</span>
+            </a>
+        </li>
+        <li role="presentation">
             <a href="/authentication/create"
                 class="{{ ($segment_0=='authentication' && $segment_1=='create') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }} flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group">
                 <span class="">New Authentication</span>
             </a>
         </li>
         <li role="presentation">
+            <a href="/authentication/void"
+                class="{{ ($segment_0=='authentication' && $segment_1=='void') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }} flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group">
+                <span class="">Void Authentication</span>
+            </a>
+        </li>
+        <li role="presentation">
             <a href="/authentication"
                 class="{{ ($segment_0=='authentication' && $segment_1=='') ? 'bg-violet-500 text-white' : 'hover:bg-violet-200' }} flex items-center px-5 p-2 text-gray-900 rounded-2xl dark:text-white dark:hover:bg-gray-700 group">
-                <span class="">Authenticated Vehicles</span>
+                <span class="">Authentications Table</span>
             </a>
         </li>
     </ul>

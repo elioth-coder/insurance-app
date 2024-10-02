@@ -25,8 +25,8 @@
                         <tr>
                             <th class="px-6 py-4">Name</th>
                             <th class="px-6 py-4">Email Address</th>
-                            <th class="px-6 py-4">Branch</th>
-                            <th class="px-6 py-4">Rate</th>
+                            <th class="px-6 py-4">Branch Code</th>
+                            <th class="px-6 py-4">Role</th>
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 py-4">Action</th>
                         </tr>
@@ -36,8 +36,8 @@
                             <tr class="group cursor-pointer">
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $agent->last_name }} {{ $agent->first_name }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">{{ $agent->email }}</td>
-                                <td class="group-hover:bg-violet-200 px-8 py-6">{{ $agent->branch }}</td>
-                                <td class="group-hover:bg-violet-200 px-8 py-6">{{ $agent->upload_rate }}</td>
+                                <td class="group-hover:bg-violet-200 px-8 py-6">{{ str_pad($agent->branch_id.'', 6, '0', STR_PAD_LEFT) }}</td>
+                                <td class="group-hover:bg-violet-200 px-8 py-6 capitalize">{{ $agent->role }}</td>
                                 <td class="group-hover:bg-violet-200 px-8 py-6">
                                     @if ($agent->status=='active')
                                         <span class="bg-green-500 rounded-lg text-white inline-block px-1 text-xs">Active</span>
