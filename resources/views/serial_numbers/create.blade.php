@@ -51,4 +51,20 @@
             </section>
         </div>
     </div>
+
+    <x-slot:script>
+    <script>
+        @if(session('serials'))
+            let serials = {!! session('serials') !!};
+        @else
+            let serials = [];
+        @endif
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if(serials.length) {
+                window.open('/serial_numbers/print?serials=' + serials.join(','), '_blank');
+            }
+        });
+    </script>
+    </x-slot>
 </x-layout>

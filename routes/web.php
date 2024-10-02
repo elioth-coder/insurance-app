@@ -104,6 +104,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('serial_numbers')->group(function () {
         Route::controller(SerialNumberController::class)->group(function () {
             Route::get('/', 'index');
+            Route::get('/print', 'print');
             Route::get('/create', 'create');
             Route::post('/', 'store');
             Route::get('/{id}', 'show');

@@ -33,6 +33,9 @@ class SessionController extends Controller
             ]);
         }
 
+        $user = Auth::user();
+        $user->branch_name == 'BRANCH 1';
+
         $request->session()->regenerate();
 
         return redirect('/');

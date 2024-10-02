@@ -23,19 +23,33 @@ class SerialNumberController extends Controller
         return view('serial_numbers.create');
     }
 
+
+    public function print(Request $request)
+    {
+        $serials = explode(',', $request->input('serials'));
+        return view('serial_numbers.print',[
+            'serials' => $serials
+        ]);
+    }
+
     public function store(Request $request)
     {
         $quantity = $request->input('quantity');
+        $serials  = [];
 
         for($i=0; $i<$quantity; $i++) {
-            SerialNumber::create([
-                'serial'   => DB::raw('UPPER(UUID())'),
+            $data = SerialNumber::create([
+                'serial'   => DB::raw('UUID_SHORT()'),
                 'status'   => 'Available',
                 'agent_id' => Auth::user()->id,
             ]);
+
+            $serial    = SerialNumber::findOrFail($data->id);
+            $serials[] = $serial->serial;
         }
 
         return redirect('/serial_numbers/create')->with([
+            'serials' => json_encode($serials),
             'message' => "Successfully generated $quantity serial numbers"
         ]);
     }

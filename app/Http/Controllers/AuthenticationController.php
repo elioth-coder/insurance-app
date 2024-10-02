@@ -159,7 +159,7 @@ class AuthenticationController extends Controller
         $authenticationAttributes['or_number']       = $this->orNumberGenerator->generate(str_pad(Auth::user()->branch_id.'', 6, '0', STR_PAD_LEFT));
         $authenticationAttributes['expiry_date']     = $date->format('Y-m-d');
         $authenticationAttributes['agent_id']        = $agent->id;
-        $authenticationAttributes['policy_number']   = DB::raw('UPPER(UUID())');
+        $authenticationAttributes['policy_number']   = DB::raw('UUID_SHORT()');
 
         $serial = $authenticationAttributes['coc_number'];
         $authentication = Authentication::create($authenticationAttributes);

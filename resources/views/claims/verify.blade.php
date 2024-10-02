@@ -102,7 +102,6 @@
                         });
                         window.location.href = `/claims/process/${serial.serial}`
                     }
-
                     return false;
                 });
 
