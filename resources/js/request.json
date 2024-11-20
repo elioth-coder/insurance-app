@@ -1,0 +1,31 @@
+{
+    "application_id": "CTPL123456",
+    "applicant": {
+        "name": "Juan Dela Cruz",
+        "address": "1234 Mango St., Manila, Philippines",
+        "contact_number": "+63 912 345 6789",
+        "email": "juandelacruz@example.com",
+        "id_number": "A123456789",
+        "id_type": "Driver's License"
+    },
+    "vehicle": {
+        "make": "Toyota",
+        "model": "Vios",
+        "year": 2022,
+        "plate_number": "ABC1234",
+        "chassis_number": "JH4DA9450NS012345",
+        "engine_number": "4A1234567"
+    },
+    "insurance_details": {
+        "policy_number": "POL123456789",
+        "coverage_amount": 100000,
+        "premium": 500,
+        "start_date": "2024-11-01",
+        "end_date": "2025-10-31"
+    },
+    "issued_by": {
+        "company_name": "ABC Insurance Corporation",
+        "branch": "Makati City Branch",
+        "contact_number": "(02) 1234-5678"
+    }
+}

@@ -9,6 +9,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\InteragencyController;
+use App\Http\Controllers\PrototypeController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SerialNumberController;
@@ -17,6 +18,19 @@ use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
+Route::post('/api/new_application', [PrototypeController::class, 'new_application']);
+
+Route::prefix('prototype')->group(function () {
+    Route::controller(PrototypeController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/qr_verifier', 'qr_verifier');
+        Route::get('/verified_qr/{id}', 'verified_qr');
+        Route::get('/print_paper/{id}', 'print_paper');
+    });
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::prefix('search')->group(function () {

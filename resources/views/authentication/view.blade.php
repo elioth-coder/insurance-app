@@ -27,7 +27,6 @@
 
 <body class="flex flex-col">
     <header class="block text-center relative mx-5">
-        <h3 class="text-lg font-bold">Integrated Vehicle Insurance Monitoring System</h3>
         <section class="flex items-center justify-center space-x-2">
             <img class="block" style="height: 90px;" src="{{ asset('images/ic-logo.png') }}" />
             <svg class="w-[100px] h-[100px] text-green-500 block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -57,15 +56,8 @@
             <p class="">MV File Number</p>
             <p class="text-xl font-bold">{{ $authentication->mv_file_number ?? '--' }}</p>
         </div>
-        <section class="block box-border border-2 border-black w-fit mx-auto"
-            style="width: 210px; min-width: 210px; height: 210px; min-height: 210px; padding: 5px;">
-            {!! QrCode::size(200)->generate(
-                $authentication->coc_number,
-            ) !!}
-        </section>
-    <footer class="text-center py-5">
 
-    </footer>
+    </main>
 </body>
 
 </html>

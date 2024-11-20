@@ -42,7 +42,7 @@
                         <td class="px-2 py-1 border capitalize">{{ $authentication->branch }}</td>
                         <td class="px-2 py-1 border">{{ $authentication->coc_number }}</td>
                         <td class="px-2 py-1 border text-right" style="text-align: right;">
-                            {{ $authentication->net_amount }}
+                            {{ $authentication->pira_fee }}
                         </td>
                         <td class="px-2 py-1 border text-right" style="text-align: right;">
                             {{ $authentication->basic_premium }}
